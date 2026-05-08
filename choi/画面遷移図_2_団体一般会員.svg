@@ -146,7 +146,7 @@
     <text x="342" y="558" class="node-name">マイユニット 新規投稿</text>
     <line x1="290" y1="568" x2="460" y2="568" stroke="#d8d3c4" stroke-width="0.5"/>
     <text x="302" y="586" class="node-btn">→ 投稿する → A-MU2</text>
-    <text x="302" y="602" class="node-btn">投稿内容をプレビュー</text>
+    <text x="302" y="602" class="node-btn">下書き保存 → A-MU2</text>
     <text x="302" y="618" class="node-btn">キャンセル</text>
   </g>
 

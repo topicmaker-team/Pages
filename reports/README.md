@@ -3,6 +3,14 @@
 topicmaker-team の共有ナレッジ・レポート集約リポジトリです。
 各種MDファイル・ビューア・チームメンバーのレポートをここに置きます。
 
+このリポジトリのファイルは、GitHub Pages サイトのページとしてもアクセスできます。
+
+URLは、https://topicmaker-team.github.io/Pages/{ファイルパス}
+
+Markdownファイルに拡張子を省略したURLでアクセスすると、HTML に整形した状態で表示できます。
+
+たとえば、[https://topicmaker-team.github.io/Pages/sample/index](https://topicmaker-team.github.io/Pages/sample/index) は、Pages/sample/index.md の内容を表示します。
+
 ## このリポジトリの構成
 
 ```
@@ -56,7 +64,5 @@ topicmaker-team (org)
 
 使用例：
 ```
-https://topicmaker-team.github.io/Pages/markdown.html?file=https://raw.githubusercontent.com/topicmaker-team/Pages/master/reports/2026-05-22-takao.md
+https://topicmaker-team.github.io/Pages/markdown.html?reports/README.md
 ```
-
-ビューアそのものの仕様変更はオーナーに相談してください。

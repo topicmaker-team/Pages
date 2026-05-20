@@ -2,9 +2,9 @@
 
 ビューアの動作確認用サンプル。
 
-- [markdown.html?sample/document.md](../markdown.html?sample/document.md) — Markdown ビューア
-- [mermaid.html?sample/diagram.mermaid](../mermaid.html?sample/diagram.mermaid) — Mermaid ビューア
-- [svg.html?sample/figure.svg](../svg.html?sample/figure.svg) — SVG ビューア
+- [https://topicmaker-team.github.io/Pages/markdown.html?sample/document.md](https://topicmaker-team.github.io/Pages/markdown.html?sample/document.md) — Markdown ビューア
+- [https://topicmaker-team.github.io/Pages/mermaid.html?sample/diagram.mermaid](https://topicmaker-team.github.io/Pages/mermaid.html?sample/diagram.mermaid) — Mermaid ビューア
+- [https://topicmaker-team.github.io/Pages/svg.html?sample/figure.svg](https://topicmaker-team.github.io/Pages/svg.html?sample/figure.svg) — SVG ビューア
 
 ---
 

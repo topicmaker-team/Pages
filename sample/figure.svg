@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="-apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/>
+      <stop offset="1" stop-color="#93c5fd"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dcfce7"/>
+      <stop offset="1" stop-color="#86efac"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fef3c7"/>
+      <stop offset="1" stop-color="#fcd34d"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="500" fill="#fafafa"/>
+
+  <text x="400" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">
+    SVG ビューア サンプル
+  </text>
+  <text x="400" y="65" text-anchor="middle" font-size="13" fill="#64748b">
+    マウスホイールでズーム / ドラッグでパン / ツールバーの ⟲ でリセット
+  </text>
+
+  <!-- Three nodes -->
+  <g>
+    <rect x="80"  y="160" width="180" height="100" rx="12" fill="url(#g1)" stroke="#1d4ed8" stroke-width="2"/>
+    <text x="170" y="200" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">編集</text>
+    <text x="170" y="225" text-anchor="middle" font-size="12" fill="#1e293b">VS Code / エディタ</text>
+    <text x="170" y="245" text-anchor="middle" font-size="12" fill="#1e293b">で .md / .svg を編集</text>
+
+    <rect x="310" y="160" width="180" height="100" rx="12" fill="url(#g2)" stroke="#15803d" stroke-width="2"/>
+    <text x="400" y="200" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">commit &amp; push</text>
+    <text x="400" y="225" text-anchor="middle" font-size="12" fill="#1e293b">git で変更を確定</text>
+    <text x="400" y="245" text-anchor="middle" font-size="12" fill="#1e293b">origin/master へ反映</text>
+
+    <rect x="540" y="160" width="180" height="100" rx="12" fill="url(#g3)" stroke="#b45309" stroke-width="2"/>
+    <text x="630" y="200" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">公開</text>
+    <text x="630" y="225" text-anchor="middle" font-size="12" fill="#1e293b">GitHub Pages が</text>
+    <text x="630" y="245" text-anchor="middle" font-size="12" fill="#1e293b">自動デプロイ</text>
+  </g>
+
+  <!-- Arrows between nodes -->
+  <line x1="260" y1="210" x2="310" y2="210" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="490" y1="210" x2="540" y2="210" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Viewer -->
+  <g>
+    <rect x="280" y="340" width="240" height="80" rx="40" fill="#fff" stroke="#475569" stroke-width="2" stroke-dasharray="4 4"/>
+    <text x="400" y="375" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">閲覧者</text>
+    <text x="400" y="397" text-anchor="middle" font-size="12" fill="#475569">svg.html?sample/figure.svg</text>
+  </g>
+
+  <!-- Connection from "公開" down to viewer -->
+  <path d="M 630 260 Q 630 320 520 380" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="60" cy="450" r="20" fill="#fecaca" stroke="#b91c1c" stroke-width="2"/>
+  <circle cx="120" cy="450" r="20" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
+  <circle cx="180" cy="450" r="20" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="240" y="455" font-size="12" fill="#64748b">← SVG なので拡大しても粗くなりません</text>
+</svg>

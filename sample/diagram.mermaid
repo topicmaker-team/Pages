@@ -1,0 +1,33 @@
+flowchart TB
+    User([閲覧者]):::user
+
+    subgraph Browser[ブラウザ]
+        direction TB
+        MDV[markdown.html]
+        MMV[mermaid.html]
+        SVV[svg.html]
+    end
+
+    subgraph Repo[topicmaker-team / Pages リポジトリ]
+        direction TB
+        MD[*.md ドキュメント]
+        MM[*.mermaid 図]
+        SV[*.svg 図]
+    end
+
+    User -- ?sample/index.md --> MDV
+    User -- ?sample/diagram.mermaid --> MMV
+    User -- ?sample/figure.svg --> SVV
+
+    MDV -- fetch --> MD
+    MMV -- fetch --> MM
+    SVV -- fetch --> SV
+
+    MDV -. インライン描画 .-> MM
+
+    classDef user fill:#fef3c7,stroke:#b45309,color:#000
+    classDef viewer fill:#dbeafe,stroke:#1d4ed8,color:#000
+    classDef file fill:#dcfce7,stroke:#15803d,color:#000
+
+    class MDV,MMV,SVV viewer
+    class MD,MM,SV file

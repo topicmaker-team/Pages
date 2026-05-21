@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>繰り上げ返済 最適化シミュレーター</title>
+<style>
+  :root {
+    --bg: #f8f9fb;
+    --bg2: #ffffff;
+    --bg3: #f1f3f7;
+    --border: #e2e6ed;
+    --border2: #c8cdd8;
+    --text: #1a1d23;
+    --text2: #5a6275;
+    --text3: #9aa0b0;
+    --accent: #2563eb;
+    --green: #059669;
+    --green-bg: #ecfdf5;
+    --green-light: #d1fae5;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --red: #dc2626;
+    --purple: #7c3aed;
+    --purple-bg: #f5f3ff;
+    --purple-light: #ede9fe;
+    --blue-bg: #eff6ff;
+    --blue-light: #dbeafe;
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1.5rem 4rem;
+    max-width: 820px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+    color: var(--text);
+  }
+  .subtitle {
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 2rem;
+  }
+
+  /* ── 入力パネル ── */
+  .input-panel {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .field input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: 15px;
+    font-family: inherit;
+    padding: 8px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+  .field input:focus { border-color: var(--accent); background: #fff; }
+  .field .unit { font-size: 11px; color: var(--text3); margin-top: 3px; }
+
+  /* ── スライダー ── */
+  .slider-panel {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+  .slider-label { font-size: 13px; color: var(--text2); font-weight: 500; }
+  .slider-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+  }
+  .slider-value span { font-size: 13px; font-weight: 400; color: var(--text2); margin-left: 2px; }
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.15);
+    transition: box-shadow 0.15s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { box-shadow: 0 0 0 6px rgba(37,99,235,0.22); }
+  .slider-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 6px;
+  }
+
+  /* ── ボタン ── */
+  .btn-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 110px;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border2);
+    background: var(--bg2);
+    color: var(--text2);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .tab-btn:hover { background: var(--bg3); color: var(--text); }
+  .tab-btn.active       { background: var(--blue-bg);   border-color: var(--accent);  color: var(--accent); }
+  .tab-btn.active-green { background: var(--green-bg);  border-color: var(--green);   color: var(--green); }
+  .tab-btn.active-purple{ background: var(--purple-bg); border-color: var(--purple);  color: var(--purple); }
+  .tab-btn.active-amber { background: var(--amber-bg);  border-color: var(--amber);   color: var(--amber); }
+
+  /* ── 結果パネル ── */
+  .result-panel {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    display: none;
+  }
+  .result-panel.visible { display: block; }
+  .result-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 20px;
+  }
+  .badge-green  { background: var(--green-light);  color: #065f46; }
+  .badge-purple { background: var(--purple-light); color: #5b21b6; }
+
+  /* ── シンプル表（軽減型・短縮型用） ── */
+  .simple-table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text3);
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.04em;
+    background: var(--bg3);
+    white-space: nowrap;
+  }
+  th.right { text-align: right; }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+  }
+  td.label { color: var(--text2); font-size: 13px; width: 45%; }
+  td.val    { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
+  td.highlight-green  { color: var(--green);  font-weight: 600; text-align: right; }
+  td.highlight-red    { color: var(--red);    font-weight: 600; text-align: right; }
+  td.highlight-accent { color: var(--accent); font-weight: 600; text-align: right; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg3); }
+
+  /* 比較表 */
+  .win  { color: var(--green); font-weight: 600; }
+  .lose { color: var(--text3); }
+  td.center { text-align: center; }
+
+  /* 控除詳細 */
+  .deduction-table td { font-size: 12px; font-variant-numeric: tabular-nums; }
+  .col-year { color: var(--text3); }
+
+  /* note */
+  .note {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    line-height: 1.8;
+  }
+  .note strong { color: var(--text2); }
+</style>
+</head>
+<body>
+
+<h1>繰り上げ返済 最適化シミュレーター</h1>
+<p class="subtitle">住宅ローン控除を考慮した最適な繰り上げ返済額をシミュレーション</p>
+
+<!-- 初期設定 -->
+<div class="input-panel">
+  <div class="input-grid">
+    <div class="field">
+      <label>現在残債</label>
+      <input type="number" id="balance" value="3000" min="100" max="100000" step="10">
+      <div class="unit">万円</div>
+    </div>
+    <div class="field">
+      <label>金利（年利）</label>
+      <input type="number" id="rate" value="0.5" min="0" max="8" step="0.05">
+      <div class="unit">%（0〜8%）</div>
+    </div>
+    <div class="field">
+      <label>月額返済額</label>
+      <input type="number" id="monthly" value="8" min="1" max="19.9" step="0.1">
+      <div class="unit">万円（20万未満）</div>
+    </div>
+    <div class="field">
+      <label>控除の残り年数</label>
+      <select id="deduct-years" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:15px;font-family:inherit;padding:8px 12px;outline:none;">
+        <option value="0">－（控除なし）</option>
+        <option value="1">1年</option>
+        <option value="2">2年</option>
+        <option value="3">3年</option>
+        <option value="4">4年</option>
+        <option value="5">5年</option>
+        <option value="6">6年</option>
+        <option value="7">7年</option>
+        <option value="8">8年</option>
+        <option value="9">9年</option>
+        <option value="10">10年</option>
+        <option value="11">11年</option>
+        <option value="12">12年</option>
+        <option value="13" selected>13年</option>
+      </select>
+      <div class="unit">－ = 控除なし</div>
+    </div>
+  </div>
+</div>
+
+<!-- スライダー -->
+<div class="slider-panel">
+  <div class="slider-header">
+    <span class="slider-label">繰り上げ元本額</span>
+    <div class="slider-value" id="prepay-display">100<span>万円</span></div>
+  </div>
+  <input type="range" id="prepay-slider" min="10" max="500" step="1" value="100">
+  <div class="slider-range">
+    <span>10万円</span>
+    <span>250万円</span>
+    <span>500万円</span>
+  </div>
+</div>
+
+<!-- ボタン -->
+<div class="btn-row">
+  <button class="tab-btn" id="btn-compare"   onclick="showTab('compare')">比較</button>
+  <button class="tab-btn" id="btn-keigen"    onclick="showTab('keigen')">軽減型</button>
+  <button class="tab-btn" id="btn-tanshuku"  onclick="showTab('tanshuku')">短縮型</button>
+  <button class="tab-btn" id="btn-deduction" onclick="showTab('deduction')">控除詳細</button>
+</div>
+
+<!-- 軽減型 -->
+<div class="result-panel" id="panel-keigen">
+  <div class="result-title">
+    <span class="badge badge-green">軽減型</span>月々の支払いを減らす
+  </div>
+  <div class="simple-table-wrap">
+    <table id="keigen-table"></table>
+  </div>
+  <div class="note" id="keigen-note"></div>
+</div>
+
+<!-- 短縮型 -->
+<div class="result-panel" id="panel-tanshuku">
+  <div class="result-title">
+    <span class="badge badge-purple">短縮型</span>返済期間を短くする
+  </div>
+  <div class="simple-table-wrap">
+    <table id="tanshuku-table"></table>
+  </div>
+  <div class="note" id="tanshuku-note"></div>
+</div>
+
+<!-- 比較 -->
+<div class="result-panel" id="panel-compare">
+  <div class="result-title">軽減型 vs 短縮型　比較</div>
+  <div class="simple-table-wrap">
+    <table id="compare-table"></table>
+  </div>
+  <div class="note" id="compare-note"></div>
+</div>
+
+<!-- 控除詳細 -->
+<div class="result-panel" id="panel-deduction">
+  <div class="result-title">住宅ローン控除　年次詳細</div>
+  <div class="simple-table-wrap">
+    <table class="deduction-table" id="deduction-table"></table>
+  </div>
+  <div class="note">※ 住宅ローン控除は年末残高の0.7%（上限35万円/年、最大13年）で試算。実際の控除額は取得年・入居年等により異なります。</div>
+</div>
+
+<script>
+function fmtPeriod(months) {
+  const y = Math.floor(months / 12);
+  const m = Math.round(months % 12);
+  return y + '年' + (m > 0 ? m + 'ヶ月' : '');
+}
+function fmtYen(man) {
+  return Math.round(man * 10000).toLocaleString() + '円';
+}
+
+function calcMonths(balanceMan, rateAnnual, monthlyMan) {
+  const balance = balanceMan * 10000;
+  const monthly = monthlyMan * 10000;
+  const r = rateAnnual / 100 / 12;
+  if (r === 0) return Math.ceil(balance / monthly);
+  return Math.ceil(-Math.log(1 - r * balance / monthly) / Math.log(1 + r));
+}
+
+function totalInterest(balanceMan, rateAnnual, months) {
+  const balance = balanceMan * 10000;
+  const r = rateAnnual / 100 / 12;
+  if (r === 0) return 0;
+  const P = balance * r * Math.pow(1+r, months) / (Math.pow(1+r, months) - 1);
+  return (P * months - balance) / 10000;
+}
+
+function monthlyPayment(balanceMan, rateAnnual, months) {
+  const balance = balanceMan * 10000;
+  const r = rateAnnual / 100 / 12;
+  if (r === 0) return balance / months / 10000;
+  return balance * r * Math.pow(1+r, months) / (Math.pow(1+r, months) - 1) / 10000;
+}
+
+function calcDeductionTotal(balanceMan, rateAnnual, months, deductYears) {
+  const r = rateAnnual / 100 / 12;
+  let bal = balanceMan * 10000;
+  const P = (r === 0) ? bal / months : bal * r * Math.pow(1+r, months) / (Math.pow(1+r, months) - 1);
+  let total = 0;
+  const limit = Math.min(months, deductYears * 12);
+  for (let i = 0; i < limit; i++) {
+    const interest = bal * r;
+    const principal = P - interest;
+    bal = Math.max(0, bal - principal);
+    if ((i % 12) === 11) total += Math.min(bal * 0.007, 350000);
+  }
+  return total / 10000;
+}
+
+function buildYearTable(kBal, rate, kMonths, tBal, tMonths, deductYears) {
+  const rK = rate / 100 / 12, rT = rate / 100 / 12;
+  let bK = kBal * 10000, bT = tBal * 10000;
+  const pK = monthlyPayment(kBal, rate, kMonths) * 10000;
+  const pT = monthlyPayment(tBal, rate, tMonths) * 10000;
+  const maxY = Math.ceil(Math.max(kMonths, tMonths) / 12);
+  const rows = [];
+  for (let y = 1; y <= maxY; y++) {
+    for (let m = 0; m < 12; m++) {
+      if (bK > 0) bK = Math.max(0, bK - (pK - bK * rK));
+      if (bT > 0) bT = Math.max(0, bT - (pT - bT * rT));
+    }
+    rows.push({
+      year: y,
+      balK: bK / 10000, dedK: (y <= deductYears && bK > 0) ? Math.min(bK * 0.007, 350000) / 10000 : 0,
+      balT: bT / 10000, dedT: (y <= deductYears && bT > 0) ? Math.min(bT * 0.007, 350000) / 10000 : 0
+    });
+  }
+  return rows;
+}
+
+function compute() {
+  const balance     = parseFloat(document.getElementById('balance').value)      || 3000;
+  const rate        = parseFloat(document.getElementById('rate').value) || 0;
+  const monthly     = parseFloat(document.getElementById('monthly').value)       || 8;
+  const deductYears = parseInt(document.getElementById('deduct-years').value);
+  const prepay      = parseInt(document.getElementById('prepay-slider').value)   || 100;
+
+  const baseMonths = calcMonths(balance, rate, monthly);
+  if (!isFinite(baseMonths) || baseMonths <= 0) return null;
+
+  const newBal = balance - prepay;
+  if (newBal <= 0) return null;
+
+  // 軽減型
+  const kMonths  = baseMonths;
+  const kMonthly = monthlyPayment(newBal, rate, kMonths);
+  const kInt     = totalInterest(newBal, rate, kMonths);
+  const kDed     = calcDeductionTotal(newBal, rate, kMonths, deductYears);
+
+  // 短縮型
+  const tMonths  = calcMonths(newBal, rate, monthly);
+  if (!isFinite(tMonths) || tMonths <= 0) return null;
+  const tInt     = totalInterest(newBal, rate, tMonths);
+  const tDed     = calcDeductionTotal(newBal, rate, tMonths, deductYears);
+
+  return {
+    balance, rate, prepay, newBal, deductYears,
+    base: { months: baseMonths, monthly },
+    keigen:   { months: kMonths, monthly: kMonthly, reduction: monthly - kMonthly, interest: kInt, deduction: kDed, net: kInt - kDed },
+    tanshuku: { months: tMonths, monthly, shortMonths: baseMonths - tMonths, interest: tInt, deduction: tDed, net: tInt - tDed }
+  };
+}
+
+// 軽減型：シンプル表
+function renderKeigen(d) {
+  const k = d.keigen;
+  const rows = [
+    ['残り期間',     fmtPeriod(k.months),                           'accent'],
+    ['新しい月額',   fmtYen(k.monthly),                             'val'],
+    ['月々削減額',   '▲' + fmtYen(k.reduction),                    'green'],
+    ['利息総額',     k.interest.toFixed(1) + '万円',                'val'],
+    ['控除合計',     '▲' + k.deduction.toFixed(1) + '万円',         'green'],
+    ['実質利息負担', k.net.toFixed(1) + '万円',                     'red'],
+  ];
+  let html = `<thead><tr><th>項目</th><th class="right">金額</th></tr></thead><tbody>`;
+  rows.forEach(([label, val, cls]) => {
+    const tdCls = cls === 'green' ? 'highlight-green' : cls === 'red' ? 'highlight-red' : cls === 'accent' ? 'highlight-accent' : 'val';
+    html += `<tr><td class="label">${label}</td><td class="${tdCls}">${val}</td></tr>`;
+  });
+  html += '</tbody>';
+  document.getElementById('keigen-table').innerHTML = html;
+  document.getElementById('keigen-note').innerHTML = `繰り上げ元本 <strong>${d.prepay}万円</strong> 返済後、新残債 <strong>${d.newBal.toFixed(0)}万円</strong> を同期間（${fmtPeriod(k.months)}）で返済。月額を削減するプランです。`;
+}
+
+// 短縮型：シンプル表
+function renderTanshuku(d) {
+  const t = d.tanshuku;
+  const rows = [
+    ['新しい残り期間',  fmtPeriod(t.months),                         'accent'],
+    ['短縮される期間',  '▲' + fmtPeriod(t.shortMonths),             'green'],
+    ['月々支払',        fmtYen(t.monthly) + '（変わらず）',           'val'],
+    ['利息総額',        t.interest.toFixed(1) + '万円',              'val'],
+    ['控除合計',        '▲' + t.deduction.toFixed(1) + '万円',       'green'],
+    ['実質利息負担',    t.net.toFixed(1) + '万円',                   'red'],
+  ];
+  let html = `<thead><tr><th>項目</th><th class="right">金額</th></tr></thead><tbody>`;
+  rows.forEach(([label, val, cls]) => {
+    const tdCls = cls === 'green' ? 'highlight-green' : cls === 'red' ? 'highlight-red' : cls === 'accent' ? 'highlight-accent' : 'val';
+    html += `<tr><td class="label">${label}</td><td class="${tdCls}">${val}</td></tr>`;
+  });
+  html += '</tbody>';
+  document.getElementById('tanshuku-table').innerHTML = html;
+  document.getElementById('tanshuku-note').innerHTML = `繰り上げ元本 <strong>${d.prepay}万円</strong> 返済後、新残債 <strong>${d.newBal.toFixed(0)}万円</strong> を同月額（${fmtYen(t.monthly)}）で返済。期間を短縮するプランです。`;
+}
+
+// 比較表
+function renderCompare(d) {
+  const k = d.keigen, t = d.tanshuku;
+  const rows = [
+    { label: '残り期間',     kv: fmtPeriod(k.months),                             tv: fmtPeriod(t.months),                              winner: t.months < k.months ? 't' : 'k' },
+    { label: '月々支払',     kv: fmtYen(k.monthly),                               tv: fmtYen(t.monthly),                                winner: k.monthly < t.monthly ? 'k' : 't' },
+    { label: '月々削減',     kv: '▲' + fmtYen(k.reduction),                      tv: '—',                                              winner: 'k' },
+    { label: '利息総額',     kv: k.interest.toFixed(1) + '万円',                  tv: t.interest.toFixed(1) + '万円',                   winner: k.interest < t.interest ? 'k' : 't' },
+    { label: '控除合計',     kv: '▲' + k.deduction.toFixed(1) + '万円',           tv: '▲' + t.deduction.toFixed(1) + '万円',            winner: k.deduction > t.deduction ? 'k' : 't' },
+    { label: '実質利息負担', kv: k.net.toFixed(1) + '万円',                       tv: t.net.toFixed(1) + '万円',                        winner: k.net < t.net ? 'k' : 't' },
+  ];
+  let html = `<thead><tr><th>項目</th><th class="right" style="color:#059669">軽減型</th><th class="right" style="color:#7c3aed">短縮型</th></tr></thead><tbody>`;
+  rows.forEach(r => {
+    html += `<tr>
+      <td class="label">${r.label}</td>
+      <td class="center ${r.winner==='k' ? 'win' : 'lose'}">${r.kv}</td>
+      <td class="center ${r.winner==='t' ? 'win' : 'lose'}">${r.tv}</td>
+    </tr>`;
+  });
+  html += '</tbody>';
+  document.getElementById('compare-table').innerHTML = html;
+  document.getElementById('compare-note').innerHTML = `実質利息負担は <strong>${k.net < t.net ? '軽減型' : '短縮型'}</strong> が有利です。月々の余裕度やライフプランに合わせて選択してください。`;
+}
+
+// 控除詳細
+function renderDeduction(d) {
+  const rows = buildYearTable(d.newBal, d.rate, d.keigen.months, d.newBal, d.tanshuku.months, d.deductYears);
+  let html = `<thead><tr>
+    <th>年</th>
+    <th class="right" style="color:#059669">軽減型 残高</th>
+    <th class="right" style="color:#059669">軽減型 控除</th>
+    <th class="right" style="color:#7c3aed">短縮型 残高</th>
+    <th class="right" style="color:#7c3aed">短縮型 控除</th>
+  </tr></thead><tbody>`;
+  rows.forEach(r => {
+    html += `<tr>
+      <td class="col-year">${r.year}年目</td>
+      <td style="text-align:right">${r.balK > 0.5 ? Math.round(r.balK) + '万' : '完済'}</td>
+      <td style="text-align:right;color:var(--green)">${r.dedK > 0 ? r.dedK.toFixed(1) + '万' : '—'}</td>
+      <td style="text-align:right">${r.balT > 0.5 ? Math.round(r.balT) + '万' : '完済'}</td>
+      <td style="text-align:right;color:var(--purple)">${r.dedT > 0 ? r.dedT.toFixed(1) + '万' : '—'}</td>
+    </tr>`;
+  });
+  html += '</tbody>';
+  document.getElementById('deduction-table').innerHTML = html;
+}
+
+// タブ制御
+let currentTab = null;
+function showTab(tab) {
+  ['compare','keigen','tanshuku','deduction'].forEach(t => {
+    document.getElementById('panel-' + t).classList.remove('visible');
+    document.getElementById('btn-' + t).className = 'tab-btn';
+  });
+  const d = compute();
+  if (!d) return;
+  if (tab === 'keigen')    { renderKeigen(d);    document.getElementById('btn-keigen').className    = 'tab-btn active-green'; }
+  if (tab === 'tanshuku')  { renderTanshuku(d);  document.getElementById('btn-tanshuku').className  = 'tab-btn active-purple'; }
+  if (tab === 'compare')   { renderCompare(d);   document.getElementById('btn-compare').className   = 'tab-btn active'; }
+  if (tab === 'deduction') { renderDeduction(d); document.getElementById('btn-deduction').className = 'tab-btn active-amber'; }
+  document.getElementById('panel-' + tab).classList.add('visible');
+  currentTab = tab;
+}
+
+document.getElementById('prepay-slider').addEventListener('input', function() {
+  const v = parseInt(this.value);
+  document.getElementById('prepay-display').innerHTML = v.toLocaleString() + '<span>万円</span>';
+  if (currentTab) showTab(currentTab);
+});
+['balance','rate','monthly'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => { if (currentTab) showTab(currentTab); });
+});
+document.getElementById('deduct-years').addEventListener('change', () => { if (currentTab) showTab(currentTab); });
+
+showTab('compare');
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 AI生成による制作物（ツール・画像・動画など）のURLと更新状況をまとめた台帳です。
 カテゴリ別にページを分けています。下の一覧表のタイトルから各詳細へ飛べます。
 
-**最終更新: 2026-06-15 ／ 登録数: 35**
+**最終更新: 2026-06-15 ／ 登録数: 36**
 
 ## カテゴリ別ページ
 - 📱 [公開アプリ（プロダクト）](apps.md)
@@ -32,6 +32,7 @@ AI生成による制作物（ツール・画像・動画など）のURLと更新
 
 | 種別 | タイトル | 作成者 | 作成日 | 最終更新 | リンク |
 |---|---|---|---|---|---|
+| 🎮 | [ワードキャッチバトル（Word Catch Battle）](games.md#word-catch-battle) | 島谷 | 2026-06-15 | 2026-06-15 | [開く](https://claude.ai/public/artifacts/1ab8392e-6d5e-422a-829f-ab964002586f) |
 | 🎮 | [Choiwood Audition](games.md#choiwood-audition) | 鈴木 | 2026-06-15 | 2026-06-15 | [開く](https://devel.enhack.app/static/playground/english-quiz-studio/choiwood-audition.html) |
 | 🎮 | [モグラたたきフレーズゲーム](games.md#mogura-phrase-game) | 草薙 / 肥後 | 2026-06-15 | 2026-06-15 | [原案](https://drive.google.com/file/d/1aAJBK1dZ2MyzWODQchswcQrSsmFz9lpe/view?usp=drive_link) |
 | 🎮 | [word racer](games.md#word-racer) | 高橋 | 2026-06-13 | 2026-06-13 | [開く](https://claude.ai/public/artifacts/2060cd93-5530-4d3d-9fda-a9b085a406ec) |

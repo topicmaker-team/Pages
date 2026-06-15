@@ -6,6 +6,11 @@
 
 ---
 
+## ワードキャッチバトル（Word Catch Battle） <a id="word-catch-battle"></a>
+- **作成者**: 島谷 / **作成日・最終更新**: 2026-06-15
+- **URL**: https://claude.ai/public/artifacts/1ab8392e-6d5e-422a-829f-ab964002586f
+- **概要**: 英単語のキャッチ系ゲーム。Claudeのアーティファクトとして制作。
+
 ## Choiwood Audition（choiwood-audition） <a id="choiwood-audition"></a>
 - **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-15
 - **URL**: https://devel.enhack.app/static/playground/english-quiz-studio/choiwood-audition.html

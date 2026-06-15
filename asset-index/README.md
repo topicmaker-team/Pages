@@ -3,7 +3,7 @@
 AI生成による制作物（ツール・画像・動画など）のURLと更新状況をまとめた台帳です。
 カテゴリ別にページを分けています。下の一覧表のタイトルから各詳細へ飛べます。
 
-**最終更新: 2026-06-12 ／ 登録数: 32**
+**最終更新: 2026-06-15 ／ 登録数: 34**
 
 ## カテゴリ別ページ
 - 📱 [公開アプリ（プロダクト）](apps.md)
@@ -30,6 +30,8 @@ AI生成による制作物（ツール・画像・動画など）のURLと更新
 
 | 種別 | タイトル | 作成者 | 作成日 | 最終更新 | リンク |
 |---|---|---|---|---|---|
+| 🧩 | [モグラたたきフレーズゲーム](generators.md#mogura-phrase-game) | 草薙 / 肥後 | 2026-06-15 | 2026-06-15 | （添付HTML） |
+| 🧩 | [word racer](generators.md#word-racer) | 高橋 | 2026-06-13 | 2026-06-13 | [開く](https://claude.ai/public/artifacts/2060cd93-5530-4d3d-9fda-a9b085a406ec) |
 | 🧩 | [あいぼうトーク（aibou-talk）](generators.md#aibou-talk) | 鈴木 | 2026-06-12 | 2026-06-12 | [開く](https://devel.enhack.app/static/playground/english-quiz-studio/aibou-talk.html) |
 | 📱 | [語彙系デッキ](apps.md#deck-goi) | 高橋 ほか | — | 2026-06-11 | [単語(ダミー版)](https://devel.enhack.app/static/playground/choi/wordsTraining-bundle.html?mock=mock/wordsTraining.json) |
 | 📱 | [企画系デッキ（カービィ）](apps.md#deck-kikaku) | 高橋 / 鈴木 | 2026-05-13 | 2026-05-18 | [開く](https://devel.enhack.app/static/playground/choi/miniDevBook.html?url=kirby%2Findex.json&build=bundle) |

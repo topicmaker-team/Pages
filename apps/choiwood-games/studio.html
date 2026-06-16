@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Choiwood スタジオ — Speaking Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Sans+JP:wght@400;500;700&display=swap"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block"/>
+<style>
+:root{
+  --bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F6F8FB;
+  --primary:#2563EB;--primary-d:#1D4ED8;--primary-l:#EFF6FF;
+  --accent:#F59E0B;--rec:#E23B3B;--rec-l:#FEF2F2;
+  --g:#059669;--g-l:#ECFDF5;--y:#D97706;--y-l:#FEF7E6;--r:#DC2626;--r-l:#FEF2F2;
+  --text:#1B1B1B;--text2:#5B6470;--line:#DADCE0;--line2:#E8EAED;
+  --ui:'Inter','Noto Sans JP',system-ui,sans-serif;--serif:'Lora',Georgia,'Noto Serif JP',serif;
+  --sh-1:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.08);
+  --sh-2:0 6px 16px rgba(16,24,40,.08);--sh-3:0 14px 38px rgba(16,24,40,.16);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{font-family:var(--ui);color:var(--text);background:var(--surface-2);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.ms{font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;line-height:1;display:inline-block;vertical-align:middle;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;-webkit-font-feature-settings:'liga'}
+.ms.fill{font-variation-settings:'FILL' 1,'wght' 500}
+.spin{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.ja{display:none}.cc-on .ja{display:block}
+
+.app{max-width:480px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg)}
+.screen{display:none;flex-direction:column;flex:1;min-height:100dvh}.screen.active{display:flex}
+.topbar{position:sticky;top:0;z-index:16;display:flex;align-items:center;gap:6px;padding:12px 10px;padding-top:max(12px,env(safe-area-inset-top));background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line2)}
+.iconbtn{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:var(--text)}.iconbtn .ms{font-size:24px}.iconbtn:active{background:var(--surface-2)}
+.iconbtn.on{color:var(--primary);background:var(--primary-l)}
+.iconbtn.cap{font-size:11px;font-weight:800;flex-direction:column;gap:0}.iconbtn.cap .ms{font-size:20px}
+.topbar .title{flex:1;min-width:0;text-align:center}.topbar .title .th{font-weight:800;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.topbar .title .ts{font-size:11px;color:var(--text2)}
+.pad{padding:18px 16px}.spacer{flex:1}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--primary);text-transform:uppercase}
+h1{font-size:25px;font-weight:800;margin:.1em 0;letter-spacing:-.01em}
+.sub{color:var(--text2);font-size:14px;margin:2px 0 0}
+.star{display:flex;align-items:center;gap:5px;font-weight:800;font-size:15px;padding:4px 8px;border-radius:10px}
+.star .ms{font-size:20px;color:var(--accent)}
+
+/* mode cards */
+.mode{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line2);border-radius:16px;box-shadow:var(--sh-1);padding:15px;width:100%;text-align:left;transition:transform .12s}
+.mode:active{transform:scale(.985)}.mode+.mode{margin-top:11px}
+.mode .ic{width:52px;height:52px;flex:0 0 auto;border-radius:14px;display:grid;place-items:center}
+.mode .ic .ms{font-size:27px}
+.mode.m1 .ic{background:var(--rec-l);color:var(--rec)}.mode.m2 .ic{background:var(--primary-l);color:var(--primary)}.mode.m3 .ic{background:var(--g-l);color:var(--g)}
+.mode .b{flex:1;min-width:0}.mode .t{font-weight:800;font-size:18px}.mode .d{font-size:13px;color:var(--text2);margin-top:2px}
+.mode .chev{color:#C2C8D0}
+
+/* scene list */
+.chap-h{font-size:12px;font-weight:800;color:var(--text2);margin:18px 2px 8px}
+.scene-card{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line2);border-radius:13px;box-shadow:var(--sh-1);padding:12px 13px;width:100%;text-align:left;transition:transform .12s}
+.scene-card:active{transform:scale(.985)}.scene-card+.scene-card{margin-top:8px}
+.scene-card .no{width:32px;height:32px;flex:0 0 auto;border-radius:9px;background:var(--primary-l);color:var(--primary-d);display:grid;place-items:center;font-weight:800;font-size:14px}
+.scene-card .b{flex:1;min-width:0}.scene-card .t{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.scene-card .d{font-size:12px;color:var(--text2)}
+.scene-card .chev{color:#C2C8D0}
+
+/* stage (shared) */
+.stage{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 18px 0;overflow-y:auto;scrollbar-width:none;text-align:center}
+.stage::-webkit-scrollbar{display:none}
+.progress{width:100%;height:5px;border-radius:999px;background:var(--line2);overflow:hidden;margin:4px 0 12px}
+.progress>i{display:block;height:100%;width:0;background:var(--primary);transition:width .35s}
+.roletag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;border-radius:999px;padding:4px 12px;margin-bottom:10px}
+.roletag.you{color:var(--rec);background:var(--rec-l)}.roletag.partner{color:var(--primary-d);background:var(--primary-l)}
+.roletag .ms{font-size:16px}
+.goal-ja{font-size:14px;color:var(--text2);margin:2px 0 10px;min-height:1.2em}
+.prompt{font-family:var(--serif);font-weight:600;font-size:clamp(22px,6vw,28px);line-height:1.4;letter-spacing:-.01em}
+.prompt .blank{display:inline-block;min-width:2.4em;border-bottom:3px solid var(--accent);color:transparent}
+.gloss{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:12px}
+.gloss span{font-size:12px;font-weight:700;color:var(--primary-d);background:var(--primary-l);border-radius:6px;padding:2px 8px}
+.hidden-en{font-family:var(--serif);font-size:18px;color:#C2C8D0;font-style:italic}
+.partner-bubble{background:var(--surface-2);border-radius:16px;padding:15px 17px;margin-top:8px;width:100%}
+.partner-bubble .en{font-family:var(--serif);font-size:20px;font-weight:600;line-height:1.4}
+.partner-bubble .ja{font-size:13px;color:var(--text2);margin-top:6px}
+
+/* word-colored result line */
+.scored{font-family:var(--serif);font-size:22px;line-height:1.6;font-weight:600;display:flex;flex-wrap:wrap;gap:.3em;justify-content:center}
+.scored .w{position:relative;padding:0 .05em;border-radius:5px}
+.scored .w.g{color:var(--g)}.scored .w.y{color:var(--y);background:var(--y-l)}.scored .w.r{color:var(--r);background:var(--r-l)}
+.legend{display:flex;gap:14px;justify-content:center;font-size:11px;font-weight:700;color:var(--text2);margin-top:12px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.legend .g i{background:var(--g)}.legend .y i{background:var(--y)}.legend .r i{background:var(--r)}
+
+/* controls */
+.controls{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;justify-items:center;gap:8px;padding:12px 20px max(16px,env(safe-area-inset-bottom))}
+.ctl{display:flex;flex-direction:column;align-items:center;gap:5px;font-weight:800;font-size:12px;color:var(--text)}
+.ctl .ms{font-size:28px}.ctl[disabled]{opacity:.3;pointer-events:none}
+.ctl.listen{justify-self:end}.ctl.skip{justify-self:start}
+.rec-circle{position:relative;width:74px;height:74px;border-radius:50%;background:var(--rec);color:#fff;display:grid;place-items:center;box-shadow:0 8px 20px rgba(226,59,59,.4)}
+.rec-circle .ms{font-size:34px}.ctl.rec small{color:var(--rec)}
+.card-rec .ring{position:absolute;inset:-7px;border-radius:50%;border:3px solid var(--rec);opacity:0;animation:recPulse 1.15s ease-out infinite}
+@keyframes recPulse{0%{transform:scale(.92);opacity:.65}100%{transform:scale(1.4);opacity:0}}
+.rec-hint{text-align:center;font-size:13px;color:var(--text2);min-height:18px;font-weight:700}
+
+/* overlays */
+.ov{position:absolute;inset:0;z-index:10;background:rgba(255,255,255,.97);backdrop-filter:blur(2px);display:none;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px 20px;text-align:center;overflow-y:auto}
+.ov.show{display:flex}
+.judging-txt{display:flex;align-items:center;gap:9px;color:var(--text2);font-weight:700;margin-top:40px}.judging-txt .ms{color:var(--rec);font-size:22px}
+.res-score{font-weight:800;font-size:58px;line-height:1;margin-top:10px}.res-score small{font-size:20px;color:var(--text2);font-weight:700}
+.bar{width:100%;max-width:260px;text-align:left;margin-top:12px}
+.bar label{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--text2)}
+.bar i{display:block;height:8px;border-radius:999px;background:var(--surface-2);margin-top:4px;overflow:hidden}.bar i span{display:block;height:100%;width:0;border-radius:999px;background:var(--accent);transition:width .7s cubic-bezier(.3,.8,.3,1)}
+.res-comment{font-family:var(--serif);font-weight:600;font-size:17px;margin-top:14px;max-width:24em}
+.res-comment-ja{font-size:13px;color:var(--text2);margin-top:5px}
+.ov-actions{display:flex;gap:10px;width:100%;max-width:320px;margin-top:18px}
+.btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--rec);color:#fff;font-size:16px;font-weight:800;border-radius:14px;padding:13px;box-shadow:0 6px 16px rgba(226,59,59,.24)}
+.btn:active{transform:scale(.98)}.btn .ms{font-size:20px}
+.btn.ghost{background:var(--surface-2);color:var(--text);box-shadow:none}
+.btn.blue{background:var(--primary);box-shadow:0 6px 16px rgba(37,99,235,.24)}
+
+/* recall choices */
+.choices{display:flex;flex-direction:column;gap:9px;width:100%;margin-top:16px}
+.choice{display:flex;align-items:center;gap:11px;background:var(--surface);border:1.5px solid var(--line);border-radius:13px;padding:13px 15px;font-size:18px;font-weight:700;box-shadow:var(--sh-1);font-family:var(--serif)}
+.choice .k{width:24px;height:24px;border-radius:7px;background:var(--surface-2);display:grid;place-items:center;font-size:12px;font-weight:800;color:var(--text2);font-family:var(--ui)}
+.choice.correct{border-color:var(--g);background:var(--g-l)}.choice.correct .k{background:var(--g);color:#fff}
+.choice.wrong{border-color:var(--r);background:var(--r-l)}.choice.wrong .k{background:var(--r);color:#fff}
+.choice.dim{opacity:.4}
+
+/* role pick */
+.rolepick{display:flex;gap:12px;margin-top:18px}
+.rolebtn{flex:1;background:var(--surface);border:2px solid var(--line2);border-radius:16px;padding:18px 12px;text-align:center;box-shadow:var(--sh-1)}
+.rolebtn .av{width:48px;height:48px;margin:0 auto 8px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px}
+.rolebtn .nm{font-weight:800}.rolebtn .role{font-size:12px;color:var(--text2);margin-top:2px}
+
+.mask{position:fixed;inset:0;background:rgba(16,24,40,.42);z-index:30;display:none;align-items:flex-end;justify-content:center}.mask.open{display:flex}
+.sheet{background:var(--surface);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:16px 18px max(20px,env(safe-area-inset-bottom));box-shadow:var(--sh-3);max-height:86vh;overflow:auto}
+.sheet h3{margin:6px 0 14px;font-size:19px}.field{margin-bottom:14px}.field label{display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:6px}
+.field input,.field select{width:100%;font-family:inherit;font-size:15px;padding:11px 12px;border:1.5px solid var(--line);border-radius:11px;background:var(--surface-2)}
+.note{font-size:12px;color:var(--text2);margin-top:6px;line-height:1.5}
+.swrow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;font-weight:600;border-top:1px solid var(--line2)}
+.switch{width:48px;height:28px;border-radius:999px;background:#CBD5E1;position:relative;flex:0 0 auto}.switch.on{background:var(--g)}.switch i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s}.switch.on i{left:23px}
+.linkbtn{background:none;color:var(--rec);font-weight:700;font-size:14px;padding:6px 0}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:#1B1B1B;color:#fff;padding:10px 16px;border-radius:999px;font-size:13px;z-index:40;opacity:0;transition:opacity .2s;pointer-events:none}.toast.show{opacity:1}
+@media(min-width:600px){body{background:radial-gradient(140% 120% at 50% -10%,#F1F5FB,#DCE3EE)}.app{box-shadow:0 0 0 1px rgba(16,24,40,.06),0 24px 64px rgba(16,24,40,.16)}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- HOME -->
+  <section class="screen active" id="s-home">
+    <div class="topbar">
+      <button class="star" id="pts-btn"><span class="ms fill">star</span><span id="pts">0</span></button>
+      <div class="title"><div class="th">Choiwood スタジオ</div><div class="ts">Speaking Studio</div></div>
+      <button class="iconbtn" id="gear"><span class="ms">settings</span></button>
+    </div>
+    <div class="pad">
+      <div class="eyebrow">Choose a room</div>
+      <h1>今日は何で練習する？</h1>
+      <p class="sub">覚えたシーンを、声に出して定着させよう。マイクとAPIキーが無くてもデモで動きます。</p>
+      <div style="margin-top:18px">
+        <button class="mode m1" data-mode="pron"><span class="ic"><span class="ms fill">graphic_eq</span></span>
+          <span class="b"><span class="t">発音チャレンジ</span><span class="d">セリフを演じて、単語ごとに色で発音フィードバック</span></span><span class="ms chev">chevron_right</span></button>
+        <button class="mode m2" data-mode="roleplay"><span class="ic"><span class="ms fill">forum</span></span>
+          <span class="b"><span class="t">ロールプレイ</span><span class="d">片方の役を演じる。相手は手本音声、あなたは主人公</span></span><span class="ms chev">chevron_right</span></button>
+      </div>
+      <p class="note" style="font-size:12px;color:var(--text2);margin-top:16px;line-height:1.6"><span class="ms" style="font-size:15px;vertical-align:-2px;color:var(--accent)">info</span> 録音はマイク許可が要るため、HTTPS配信（GitHub Pages等）で開くと有効になります。この枠ではデモ採点で動作確認できます。</p>
+    </div>
+    <div class="spacer"></div>
+  </section>
+
+  <!-- SCENE LIST -->
+  <section class="screen" id="s-scene">
+    <div class="topbar">
+      <button class="iconbtn" id="scene-back"><span class="ms">arrow_back</span></button>
+      <div class="title"><div class="th" id="scene-mode">モード</div><div class="ts">シーンを選ぶ</div></div>
+      <div class="iconbtn" style="visibility:hidden"></div>
+    </div>
+    <div class="pad"><div id="scene-list"></div></div>
+    <div class="spacer"></div>
+  </section>
+
+  <!-- ROLE PICK (roleplay only) -->
+  <section class="screen" id="s-role">
+    <div class="topbar"><button class="iconbtn" id="role-back"><span class="ms">arrow_back</span></button>
+      <div class="title"><div class="th">役を選ぶ</div><div class="ts" id="role-scene">シーン</div></div><div class="iconbtn" style="visibility:hidden"></div></div>
+    <div class="pad">
+      <div class="eyebrow">Pick your role</div><h1 style="font-size:20px">どっちを演じる？</h1>
+      <p class="sub">あなたのセリフだけ録音します。相手のセリフは手本が再生されます。</p>
+      <div class="rolepick" id="rolepick"></div>
+    </div>
+    <div class="spacer"></div>
+  </section>
+
+  <!-- PLAYER (shared stage) -->
+  <section class="screen" id="s-play">
+    <div class="topbar">
+      <button class="iconbtn" id="play-back"><span class="ms">close</span></button>
+      <div class="title"><div class="th" id="play-title">練習中</div><div class="ts" id="play-prog">1 / 4</div></div>
+      <button class="iconbtn cap on" id="play-cap"><span class="ms">translate</span><span>JP</span></button>
+    </div>
+    <div class="stage" id="stage" style="position:relative">
+      <div class="progress"><i id="prog"></i></div>
+      <div id="role-line"></div>
+      <div class="goal-ja ja" id="goal-ja"></div>
+      <div class="prompt" id="prompt"></div>
+      <div class="gloss" id="gloss"></div>
+      <div id="extra"></div>
+      <div class="spacer"></div>
+
+      <!-- judging overlay -->
+      <div class="ov" id="ov-judge"><div class="judging-txt"><span class="ms spin">progress_activity</span> 演技を聞いています…</div></div>
+      <!-- result overlay -->
+      <div class="ov" id="ov-res">
+        <div class="res-score"><span id="res-num">0</span><small>/100</small></div>
+        <div class="bar"><label>表現力 Expression</label><i><span id="bar-exp"></span></i></div>
+        <div class="scored" id="res-words" style="margin-top:16px"></div>
+        <div class="legend"><span class="g"><i></i>good</span><span class="y"><i></i>もう少し</span><span class="r"><i></i>要練習</span></div>
+        <div class="res-comment" id="res-comment"></div>
+        <div class="res-comment-ja ja" id="res-comment-ja"></div>
+        <div class="ov-actions">
+          <button class="btn ghost" id="res-retry"><span class="ms">replay</span> もう一回</button>
+          <button class="btn" id="res-next">次へ <span class="ms fill">arrow_forward</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="rec-hint" id="rec-hint">RECを押してセリフを演じよう</div>
+    <div class="controls" id="controls">
+      <button class="ctl listen" id="btn-listen"><span class="ms">volume_up</span><small>手本</small></button>
+      <button class="ctl rec" id="btn-rec"><span class="rec-circle"><span class="ring"></span><span class="ms fill" id="rec-ic">mic</span></span><small id="rec-lab">REC</small></button>
+      <button class="ctl skip" id="btn-skip"><span class="ms">skip_next</span><small>スキップ</small></button>
+    </div>
+  </section>
+
+  <!-- END -->
+  <section class="screen" id="s-end">
+    <div class="topbar"><div class="iconbtn" style="visibility:hidden"></div><div class="title"><div class="th">おつかれさま！</div><div class="ts">Scene complete</div></div><div class="iconbtn" style="visibility:hidden"></div></div>
+    <div class="pad" style="text-align:center">
+      <div style="font-size:56px;margin:10px 0">🎬</div>
+      <h1 id="end-score">0 点</h1><p class="sub" id="end-sub"></p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:22px">
+        <button class="btn blue" id="end-again"><span class="ms fill">replay</span> もう一度このシーン</button>
+        <button class="btn ghost" id="end-next"><span class="ms fill">arrow_forward</span> 次のシーンへ</button>
+        <button class="btn ghost" id="end-home"><span class="ms">home</span> ホームへ</button>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </section>
+
+  <!-- settings -->
+  <div class="mask" id="mask"><div class="sheet">
+    <h3>設定</h3>
+    <div class="field"><label>Gemini API キー（任意・この端末のみ）</label>
+      <input id="set-key" type="password" placeholder="空ならデモ（モック採点＋ブラウザ音声）" autocomplete="off"/>
+      <div class="note">config.js があれば優先。公開URLにキー直書きは避け、サーバー中継推奨。</div></div>
+    <div class="field"><label>手本の声（Gemini TTS）</label>
+      <select id="set-voice"><option value="Aoede">Aoede 👩</option><option value="Leda">Leda 👧</option><option value="Kore" selected>Kore 👩</option><option value="Zephyr">Zephyr 👩</option><option value="Puck">Puck 👨</option><option value="Charon">Charon 👨</option></select></div>
+    <div class="swrow"><div>日本語字幕</div><div class="switch on" id="sw-cc"><i></i></div></div>
+    <div class="swrow"><div>効果音</div><div class="switch on" id="sw-sfx"><i></i></div></div>
+    <button class="linkbtn" id="reset-pts">ポイントをリセット</button>
+    <button class="btn blue" id="set-done" style="margin-top:8px">完了</button>
+  </div></div>
+  <div class="toast" id="toast"></div>
+  <audio id="model-audio" preload="auto"></audio>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="config.js"></script>
+<script>
+"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const TEXT_MODEL='gemini-2.5-flash',TTS_MODEL='gemini-3.1-flash-tts-preview',REC_MAX=10000;
+const SCENES_DEFAULT=[{"chap": "チャプター1: カービィの不思議な魅力", "scene": "シーン1: 丸くてピンクのヒーロー", "lines": [{"spk": "ケント", "en": "Kirby is the most cute hero in the world.", "chunk": "カービィ 最も 可愛い ヒーロー 世界", "ja": "カービィは 最も 可愛い ヒーロー 世界。"}, {"spk": "ソラ", "en": "Why do you like that small pink circle?", "chunk": "なぜ あなた 好き その 小さな ピンク 円 ?", "ja": "なぜ あなたは 好きなの その 小さな ピンクの 円？"}, {"spk": "ケント", "en": "He has a soft body and a big heart.", "chunk": "彼 持つ 柔らかい 体 そして 大きな 心", "ja": "彼は 持っている 柔らかい 体を そして 大きな 心を。"}, {"spk": "ソラ", "en": "I think he looks very friendly and kind.", "chunk": "私 思う 彼 見える とても 親しみやすい 親切", "ja": "私は 思う 彼が 見えると とても 親しみやすく 親切に。"}]}, {"chap": "チャプター1: カービィの不思議な魅力", "scene": "シーン2: 変幻自在なコピー能力", "lines": [{"spk": "ケント", "en": "Kirby can swallow enemies and copy their powers.", "chunk": "カービィ できる 吸い込む 敵 そして コピー それらの 力", "ja": "カービィは できる 吸い込むことが 敵を そして コピーすることを それらの 力を。"}, {"spk": "ソラ", "en": "Does he use a sword or fire breath?", "chunk": "彼 使う 剣 または 炎 息 ?", "ja": "彼は 使うの 剣を または 炎の 息を？"}, {"spk": "ケント", "en": "Yes, he uses many different weapons for battle.", "chunk": "はい 彼 使う 多く 異なる 武器 戦い", "ja": "はい 彼は 使う 多くの 異なる 武器を 戦いのために。"}, {"spk": "ソラ", "en": "That is the most interesting part of the game.", "chunk": "それ 最も 面白い 部分 ゲーム", "ja": "それは 最も 面白い 部分 ゲームの。"}]}, {"chap": "チャプター1: カービィの不思議な魅力", "scene": "シーン3: 食いしん坊なカービィ", "lines": [{"spk": "ケント", "en": "Kirby likes to eat many sweet and tasty cakes.", "chunk": "カービィ 好き 食べる 多く 甘い 美味しい ケーキ", "ja": "カービィは 好き 食べることが 多くの 甘い 美味しい ケーキを。"}, {"spk": "ソラ", "en": "He always looks very happy when he eats.", "chunk": "彼 いつも 見える とても 幸せ 時 彼 食べる", "ja": "彼は いつも 見える とても 幸せに 時 彼は 食べる。"}, {"spk": "ケント", "en": "His big mouth can inhale almost anything nearby.", "chunk": "彼の 大きな 口 できる 吸い込む ほとんど 何でも 近く", "ja": "彼の 大きな 口は できる 吸い込むことが ほとんど 何でも 近くの。"}, {"spk": "ソラ", "en": "I want to eat snacks with him some day.", "chunk": "私 したい 食べる お菓子 彼 いつか", "ja": "私は したい 食べることを お菓子を 彼と いつか。"}]}, {"chap": "チャプター1: カービィの不思議な魅力", "scene": "シーン4: プププランドの仲間たち", "lines": [{"spk": "ケント", "en": "Kirby has many friends in the Dream Land.", "chunk": "カービィ 持つ 多く 友達 プププランド", "ja": "カービィは 持っている 多くの 友達を プププランドに。"}, {"spk": "ソラ", "en": "Who is the best friend of this pink hero?", "chunk": "誰 親友 その ピンク ヒーロー ?", "ja": "誰が 親友なの その ピンクの ヒーローの？"}, {"spk": "ケント", "en": "Bandana Waddle Dee is his very loyal friend.", "chunk": "バンダナワドルディ 彼の とても 忠実な 友達", "ja": "バンダナワドルディは 彼の とても 忠実な 友達。"}, {"spk": "ソラ", "en": "They always help each other during their adventures.", "chunk": "それら いつも 助ける お互い 間 それらの 冒険", "ja": "それらは いつも 助け合う お互いを 間に それらの 冒険の。"}]}, {"chap": "チャプター1: カービィの不思議な魅力", "scene": "シーン5: 空を飛ぶホバリング", "lines": [{"spk": "ケント", "en": "Kirby can fly high in the sky like birds.", "chunk": "カービィ できる 飛ぶ 高く 空 鳥", "ja": "カービィは できる 飛ぶことが 高く 空を 鳥のように。"}, {"spk": "ソラ", "en": "How does he stay in the air so long?", "chunk": "どのように 彼 留まる 空中 そんなに 長く ?", "ja": "どのように 彼は 留まるの 空中に そんなに 長く？"}, {"spk": "ケント", "en": "He puffs up his body with a lot of air.", "chunk": "彼 膨らませる 彼の 体 多く 空気", "ja": "彼は 膨らませる 彼の 体を たくさんの 空気で。"}, {"spk": "ソラ", "en": "Flying in the blue sky looks really fun.", "chunk": "飛ぶこと 青い 空 見える 本当に 楽しい", "ja": "飛ぶことは 青い 空を 見える 本当に 楽しく。"}]}, {"chap": "チャプター1: カービィの不思議な魅力", "scene": "シーン6: ライバル、デデデ大王との関係", "lines": [{"spk": "ケント", "en": "King Dedede is a big rival of Kirby.", "chunk": "デデデ大王 大きな ライバル カービィ", "ja": "デデデ大王は 大きな ライバル カービィの。"}, {"spk": "ソラ", "en": "Is he a bad king or a good friend?", "chunk": "彼 悪い 王 または 良い 友達 ?", "ja": "彼は 悪い 王なの または 良い 友達？"}, {"spk": "ケント", "en": "He is sometimes a rival, but sometimes a friend.", "chunk": "彼 時々 ライバル しかし 時々 友達", "ja": "彼は 時々は ライバル しかし 時々は 友達。"}, {"spk": "ソラ", "en": "Their relationship is very deep and very special.", "chunk": "それらの 関係 とても 深い そして とても 特別", "ja": "それらの 関係は とても 深く そして とても 特別。"}]}, {"chap": "チャプター1: カービィの不思議な魅力", "scene": "シーン7: クールな剣士、メタナイト", "lines": [{"spk": "ケント", "en": "Meta Knight is a cool and mysterious masked swordsman.", "chunk": "メタナイト かっこいい 謎めいた 仮面 剣士", "ja": "メタナイトは かっこいい 謎めいた 仮面の 剣士。"}, {"spk": "ソラ", "en": "Does he always fight against the pink hero?", "chunk": "彼 いつも 戦う その ピンク ヒーロー ?", "ja": "彼は いつも 戦うの その ピンクの ヒーローと？"}, {"spk": "ケント", "en": "No, he often helps Kirby in his difficult times.", "chunk": "いいえ 彼 しばしば 助ける カービィ 彼の 困難な 時", "ja": "いいえ 彼は しばしば 助ける カービィを 彼の 困難な 時に。"}, {"spk": "ソラ", "en": "His blue wings and mask are very cool.", "chunk": "彼の 青い 翼 そして 仮面 とても かっこいい", "ja": "彼の 青い 翼と そして 仮面は とても かっこいい。"}]}, {"chap": "チャプター1: カービィの不思議な魅力", "scene": "シーン8: カービィの優しさと性格", "lines": [{"spk": "ケント", "en": "Kirby is always very kind to everyone he meets.", "chunk": "カービィ いつも とても 親切 全員 彼 会う", "ja": "カービィは いつも とても 親切 全員に 彼が 会う。"}, {"spk": "ソラ", "en": "Does he ever get angry at bad people?", "chunk": "彼 今まで 怒る 悪い 人々 ?", "ja": "彼は 今までに 怒るの 悪い 人々に？"}, {"spk": "ケント", "en": "He fights only to protect his peaceful home.", "chunk": "彼 戦う 唯一 守る 彼の 平和な 故郷", "ja": "彼は 戦う 唯一 守るために 彼の 平和な 故郷を。"}, {"spk": "ソラ", "en": "I really love his brave and warm spirit.", "chunk": "私 本当に 愛する 彼の 勇敢な 温かい 魂", "ja": "私は 本当に 愛する 彼の 勇敢な 温かい 魂を。"}]}, {"chap": "チャプター2: ボクとカービィの日常", "scene": "シーン1: 初めてプレイした時の思い出", "lines": [{"spk": "ケント", "en": "I first played Kirby when I was six.", "chunk": "私 最初 プレイした カービィ 時 私 六歳 だった", "ja": "私 最初 プレイした カービィ 時に 私は 六歳 だった。"}, {"spk": "ソラ", "en": "Was the game difficult for a small child?", "chunk": "だった その ゲーム 難しい 小さな 子供 ?", "ja": "だった その ゲーム 難しい 小さな 子供に ？"}, {"spk": "ケント", "en": "It was very easy and fun for me.", "chunk": "それ だった とても 簡単 そして 楽しい 私", "ja": "それ だった とても 簡単 そして 楽しく 私に。"}, {"spk": "ソラ", "en": "That is why everyone loves this pink hero.", "chunk": "それ なぜ 全員 愛する この ピンク ヒーロー", "ja": "それは 理由 全員が 愛する この ピンクの ヒーローを。"}]}, {"chap": "チャプター2: ボクとカービィの日常", "scene": "シーン2: アクションゲームとしての面白さ", "lines": [{"spk": "ケント", "en": "You can enjoy many different stages and worlds.", "chunk": "あなた できる 楽しむ 多く 異なる ステージ そして 世界", "ja": "あなたは できる 楽しむことを 多くの 異なる ステージと そして 世界を。"}, {"spk": "ソラ", "en": "Do the enemies become stronger in later levels?", "chunk": "その 敵 なる より強く 後の レベル ?", "ja": "その 敵は なるの より強く 後の レベルで ？"}, {"spk": "ケント", "en": "Yes, but Kirby can use many cool powers.", "chunk": "はい しかし カービィ できる 使う 多く かっこいい 力", "ja": "はい しかし カービィは できる 使うことを 多くの かっこいい 力を。"}, {"spk": "ソラ", "en": "I want to try this great action game.", "chunk": "私 したい 試す この 素晴らしい アクション ゲーム", "ja": "私は したい 試すことを この 素晴らしい アクション ゲームを。"}]}, {"chap": "チャプター2: ボクとカービィの日常", "scene": "シーン3: 忘れられない名曲たち", "lines": [{"spk": "ケント", "en": "The music of the game is very famous.", "chunk": "音楽 ゲーム とても 有名", "ja": "音楽は ゲームの とても 有名。"}, {"spk": "ソラ", "en": "Which song is your most favorite one?", "chunk": "どの 曲 あなたの 最も お気に入り ひとつ ?", "ja": "どの 曲が あなたの 最も お気に入りの ひとつ ？"}, {"spk": "ケント", "en": "I love the bright song of Green Greens.", "chunk": "私 愛する 明るい 曲 グリーングリーンズ", "ja": "私は 愛する 明るい 曲を グリーングリーンズの。"}, {"spk": "ソラ", "en": "The sound makes me feel very happy too.", "chunk": "その 音 させる 私 感じる とても 幸せ また", "ja": "その 音は させる 私を 感じるように とても 幸せに また。"}]}, {"chap": "チャプター2: ボクとカービィの日常", "scene": "シーン4: 部屋にあふれるカービィグッズ", "lines": [{"spk": "ケント", "en": "My room has many soft plush toys of Kirby.", "chunk": "私の 部屋 持つ 多く 柔らかい ぬいぐるみ カービィ", "ja": "私の 部屋は 持っている 多くの 柔らかい ぬいぐるみを カービィの。"}, {"spk": "ソラ", "en": "You have a lot of pink items there.", "chunk": "あなた 持つ たくさん ピンク アイテム そこ", "ja": "あなたは 持っている たくさんの ピンクの アイテムを そこに。"}, {"spk": "ケント", "en": "I even have a big Kirby pillow today.", "chunk": "私 さえ 持つ 大きな カービィ 枕 今日", "ja": "私は さえ 持っている 大きな カービィの 枕を 今日も。"}, {"spk": "ソラ", "en": "Your room looks like a dream world now.", "chunk": "あなたの 部屋 見える 夢 世界 今", "ja": "あなたの 部屋は 見える 夢の 世界のように 今。"}]}, {"chap": "チャプター2: ボクとカービィの日常", "scene": "シーン5: 最新作の進化に驚いた", "lines": [{"spk": "ケント", "en": "The new game has a very strange world.", "chunk": "その 新しい ゲーム 持つ とても 不思議な 世界", "ja": "その 新しい ゲームは 持っている とても 不思議な 世界を。"}, {"spk": "ソラ", "en": "How did the game change from before?", "chunk": "どのように その ゲーム 変わった 以前 ?", "ja": "どのように その ゲームは 変わったの 以前から ？"}, {"spk": "ケント", "en": "Kirby can now transform into a big car.", "chunk": "カービィ できる 今 変身する 大きな 車", "ja": "カービィは できる 今 変身することが 大きな 車に。"}, {"spk": "ソラ", "en": "That sounds very funny and very exciting.", "chunk": "それ 聞こえる とても おかしい そして とても ワクワクする", "ja": "それは 聞こえる とても おかしく そして とても ワクワクするように。"}]}, {"chap": "チャプター2: ボクとカービィの日常", "scene": "シーン6: 落ち込んだ時に救われたこと", "lines": [{"spk": "ケント", "en": "I felt very sad after a bad day.", "chunk": "私 感じた とても 悲しい 後 悪い 日", "ja": "私は 感じた とても 悲しく 後に 悪い 日の。"}, {"spk": "ソラ", "en": "Did you play the game to feel better?", "chunk": "あなた プレイした その ゲーム 感じる より良く ?", "ja": "あなたは プレイしたの その ゲームを 感じるために より良く ？"}, {"spk": "ケント", "en": "Yes, Kirby's smile always makes me very happy.", "chunk": "はい カービィの 笑顔 いつも させる 私 とても 幸せ", "ja": "はい カービィの 笑顔は いつも させる 私を とても 幸せに。"}, {"spk": "ソラ", "en": "His positive energy is really great for us.", "chunk": "彼の 前向きな エネルギー 本当に 素晴らしい 私たち", "ja": "彼の 前向きな エネルギーは 本当に 素晴らしい 私たちに。"}]}, {"chap": "チャプター2: ボクとカービィの日常", "scene": "シーン7: 友達に勧めたいポイント", "lines": [{"spk": "ケント", "en": "You should play this game with your family.", "chunk": "あなた すべき プレイする この ゲーム あなたの 家族", "ja": "あなたは すべきだ プレイする この ゲームを あなたの 家族と。"}, {"spk": "ソラ", "en": "Can two people play the game together?", "chunk": "できる 二人 人々 プレイする その ゲーム 一緒 ?", "ja": "できるの 二人の 人々が プレイすることが その ゲームを 一緒に ？"}, {"spk": "ケント", "en": "Yes, we can explore the world with friends.", "chunk": "はい 私たち できる 冒険する 世界 友達", "ja": "はい 私たちは できる 冒険することを 世界を 友達と。"}, {"spk": "ソラ", "en": "That sounds like a wonderful way to play.", "chunk": "それ 聞こえる 素晴らしい 方法 プレイする", "ja": "それは 聞こえる 素晴らしい 方法のように プレイするための。"}]}, {"chap": "チャプター2: ボクとカービィの日常", "scene": "シーン8: これからもずっと大ファン", "lines": [{"spk": "ケント", "en": "I will love Kirby for a long time.", "chunk": "私 だろう 愛する カービィ 長い 間", "ja": "私は だろう 愛する カービィを 長い 間にわたって。"}, {"spk": "ソラ", "en": "You are truly the biggest fan of him.", "chunk": "あなた 本当に 最大の ファン 彼", "ja": "あなたは 本当に 最大の ファンだ 彼の。"}, {"spk": "ケント", "en": "He is my best friend in the world.", "chunk": "彼 私の 親友 世界", "ja": "彼は 私の 親友 世界で。"}, {"spk": "ソラ", "en": "Let's talk about him again some other day.", "chunk": "しよう 話す 彼 再び いつか 他の日", "ja": "しよう 話すことを 彼のことを 再び いつか 他の日に。"}]}];let SCENES=SCENES_DEFAULT;
+
+const store=(()=>{let ok=true;try{localStorage.setItem('__t','1');localStorage.removeItem('__t');}catch(e){ok=false;}const m={};
+  return{get:k=>{try{return ok?localStorage.getItem(k):(m[k]??null);}catch(e){return m[k]??null;}},set:(k,v)=>{try{ok?localStorage.setItem(k,v):(m[k]=v);}catch(e){m[k]=v;}}};})();
+const PK='choiwood_studio_v1';
+const prefs=Object.assign({apiKey:'',voice:'Kore',ccOn:true,sfxOn:true,points:0},JSON.parse(store.get(PK)||'{}'));
+function save(){store.set(PK,JSON.stringify(prefs));}
+function resolveKey(){try{if(typeof CONFIG!=='undefined'&&CONFIG&&CONFIG.geminiApiKey)return CONFIG.geminiApiKey;}catch(e){}return prefs.apiKey||'';}
+function proxyBase(){try{if(typeof CONFIG!=='undefined'&&CONFIG&&CONFIG.proxyBase)return String(CONFIG.proxyBase).replace(/\/$/,'');}catch(e){}return '';}
+function hasAPI(){return !!resolveKey()||!!proxyBase();}
+function apiUrl(model){const pb=proxyBase();if(pb)return `${pb}/v1beta/models/${model}:generateContent`;return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(resolveKey())}`;}
+function show(id){$$('.screen').forEach(s=>s.classList.toggle('active',s.id===id));window.scrollTo(0,0);}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),1700);}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function applyCC(){document.documentElement.classList.toggle('cc-on',prefs.ccOn);$$('.iconbtn.cap').forEach(b=>b.classList.toggle('on',prefs.ccOn));}
+function updPts(){$('#pts').textContent=prefs.points;}
+function tokensOf(en){return String(en||'').trim().split(/\s+/).filter(Boolean);}
+function norm(w){return w.toLowerCase().replace(/[.,?!"'’]/g,'');}
+function glossOf(l){return String(l.chunk||l.ja||'').trim().split(/\s+/).filter(Boolean);}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
+function sceneShort(sc){return sc.scene.replace(/^シーン\d+\s*[:：]\s*/,'');}
+
+/* ===== audio ===== */
+let actx=null;function ic(){if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}if(actx&&actx.state==='suspended')actx.resume();}
+function tone(f,d,t,g){if(!prefs.sfxOn)return;try{ic();if(!actx)return;const o=actx.createOscillator(),ga=actx.createGain();o.type=t||'sine';o.frequency.value=f;o.connect(ga);ga.connect(actx.destination);const n=actx.currentTime;ga.gain.setValueAtTime(.0001,n);ga.gain.exponentialRampToValueAtTime(g||.16,n+.01);ga.gain.exponentialRampToValueAtTime(.0001,n+d);o.start(n);o.stop(n+d);}catch(e){}}
+function sfxGood(){tone(540,.1,'triangle');setTimeout(()=>tone(800,.14,'triangle'),80);}
+function sfxBad(){tone(220,.18,'sawtooth',.12);}
+function pcmToWav(b64,rate){const bin=atob(b64),len=bin.length,buf=new ArrayBuffer(44+len),dv=new DataView(buf);const w=(o,s)=>{for(let i=0;i<s.length;i++)dv.setUint8(o+i,s.charCodeAt(i));};
+  w(0,'RIFF');dv.setUint32(4,36+len,true);w(8,'WAVE');w(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,1,true);dv.setUint32(24,rate,true);dv.setUint32(28,rate*2,true);dv.setUint16(32,2,true);dv.setUint16(34,16,true);w(36,'data');dv.setUint32(40,len,true);
+  for(let i=0;i<len;i++)dv.setUint8(44+i,bin.charCodeAt(i));return URL.createObjectURL(new Blob([buf],{type:'audio/wav'}));}
+function encWav(ab,rate){const inR=ab.sampleRate;let data=ab.getChannelData(0);if(rate&&rate<inR){const ratio=inR/rate,L=Math.floor(data.length/ratio),o=new Float32Array(L);for(let i=0;i<L;i++)o[i]=data[Math.floor(i*ratio)];data=o;}else rate=inR;
+  const len=data.length,buf=new ArrayBuffer(44+len*2),dv=new DataView(buf);const w=(o,s)=>{for(let i=0;i<s.length;i++)dv.setUint8(o+i,s.charCodeAt(i));};
+  w(0,'RIFF');dv.setUint32(4,36+len*2,true);w(8,'WAVE');w(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,1,true);dv.setUint32(24,rate,true);dv.setUint32(28,rate*2,true);dv.setUint16(32,2,true);dv.setUint16(34,16,true);w(36,'data');dv.setUint32(40,len*2,true);
+  let o=44;for(let i=0;i<len;i++){let s=Math.max(-1,Math.min(1,data[i]));dv.setInt16(o,s<0?s*0x8000:s*0x7FFF,true);o+=2;}
+  let bin='';const by=new Uint8Array(buf),CH=0x8000;for(let i=0;i<by.length;i+=CH)bin+=String.fromCharCode.apply(null,by.subarray(i,i+CH));return btoa(bin);}
+
+/* ===== Gemini TTS / browser fallback ===== */
+const ttsCache={};const modelAudio=$('#model-audio');
+async function geminiTTS(text,voice){const ck=voice+'|'+text;if(ttsCache[ck])return ttsCache[ck];
+  const url=apiUrl(TTS_MODEL);
+  const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text}]}],generationConfig:{responseModalities:['AUDIO'],speechConfig:{voiceConfig:{prebuiltVoiceConfig:{voiceName:voice}}}}})});
+  if(!res.ok)throw new Error('tts '+res.status);const d=await res.json();const part=(d?.candidates?.[0]?.content?.parts||[]).find(p=>p.inlineData||p.inline_data);const inl=part&&(part.inlineData||part.inline_data);if(!inl)throw new Error('no audio');
+  const rate=(/rate=(\d+)/.exec(inl.mimeType||inl.mime_type||'')||[])[1]||24000;const u=pcmToWav(inl.data,+rate);ttsCache[ck]=u;return u;}
+function speakBrowser(text){return new Promise(res=>{if(!window.speechSynthesis){setTimeout(res,Math.max(1200,text.length*55));return;}const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.95;u.onend=res;u.onerror=res;speechSynthesis.cancel();speechSynthesis.speak(u);});}
+async function playModel(text){ic();try{if(hasAPI()){const url=await geminiTTS(text,prefs.voice);modelAudio.src=url;await modelAudio.play();return new Promise(r=>{modelAudio.onended=r;});}}catch(e){}return speakBrowser(text);}
+
+/* ===== Gemini judge (with per-word color) ===== */
+async function geminiJudge(wavB64,en){
+  const sys=`You are a warm Hollywood acting & pronunciation coach. The actor performed this exact English LINE: "${en}". You will hear their RAW audio take.
+Rate the take. Return STRICT JSON only (no markdown):
+{"score":<int 0-100 overall>,"expression":<int 0-100 emotion/energy/naturalness>,
+"comment_en":"<one short in-character note, <=14 words>","comment_ja":"<casual Japanese タメ口>",
+"words":[{"w":"<each word of the LINE in order>","r":<2=clear,1=okay,0=weak/unclear or missing>}]}
+Cover EVERY word of the LINE in order. Empty/silent/wrong line -> low scores and r:0 for all.`;
+  const url=apiUrl(TEXT_MODEL);
+  const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{text:sys},{inlineData:{mimeType:'audio/wav',data:wavB64}}]}],generationConfig:{responseMimeType:'application/json',temperature:0.5}})});
+  if(!res.ok)throw new Error('judge '+res.status);const d=await res.json();const txt=(d?.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('');return clampRes(JSON.parse(txt),en);}
+function clampRes(o,en){const ci=(v,d)=>{v=Math.round(+v);return isFinite(v)?Math.max(0,Math.min(100,v)):d;};
+  let words=Array.isArray(o.words)?o.words.map(x=>({w:String(x.w||''),r:Math.max(0,Math.min(2,Math.round(+x.r||0)))})):[];
+  if(!words.length)words=tokensOf(en).map(w=>({w,r:1}));
+  return{score:ci(o.score,0),expression:ci(o.expression,0),comment_en:String(o.comment_en||'…').slice(0,140),comment_ja:String(o.comment_ja||'').slice(0,140),words};}
+function mockJudge(has,en){const toks=tokensOf(en);const words=toks.map(w=>{const r=has?(Math.random()<.62?2:Math.random()<.6?1:0):0;return{w,r};});
+  const avg=words.reduce((a,c)=>a+c.r,0)/(words.length||1);let score=has?Math.round(28+avg*30+Math.random()*12):0;score=Math.max(0,Math.min(100,score));
+  const C=has?(score>=80?{en:'Magnificent! The camera adores you!',ja:'お見事！カメラが惚れてるよ！'}:score>=55?{en:'Not bad — give me a touch more heart.',ja:'悪くない！もう少し心を込めて！'}:{en:'Hmm, I felt almost nothing. Again!',ja:'うーん、ほとんど感じない。もう一回！'}):{en:'Is this mic on? I heard nothing!',ja:'マイク入ってる？何も聞こえなかった！'};
+  return{score,expression:has?Math.max(0,Math.min(100,score+(Math.random()*20-10|0))):0,comment_en:C.en,comment_ja:C.ja,words};}
+
+/* ===== recording ===== */
+let stream=null,rec=null,chunks=[],recRAF=0,recStart=0;
+async function startRec(){ic();try{stream=await navigator.mediaDevices.getUserMedia({audio:true});}catch(e){toast('この環境ではマイクが使えません。HTTPS配信で有効になります（デモ採点を表示）');onRecStop(true);return;}
+  chunks=[];try{rec=new MediaRecorder(stream);}catch(e){return;}rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data);};rec.onstop=()=>onRecStop(false);rec.start();recStart=performance.now();setRecState(true);tick();clearTimeout(startRec._t);startRec._t=setTimeout(stopRec,REC_MAX);}
+function tick(){if(!recording())return;$('#rec-lab').textContent=((performance.now()-recStart)/1000).toFixed(1)+'s';recRAF=requestAnimationFrame(tick);}
+function stopRec(){clearTimeout(startRec._t);cancelAnimationFrame(recRAF);if(rec&&rec.state!=='inactive'){try{rec.stop();}catch(e){}}if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}}
+let _recOn=false;function recording(){return _recOn;}
+function setRecState(on){_recOn=on;$('#s-play').classList.toggle('card-rec',on);$('#rec-ic').textContent=on?'stop':'mic';if(!on)$('#rec-lab').textContent='REC';$('#rec-hint').textContent=on?'録音中… もう一度タップで停止':'RECを押してセリフを演じよう';$('#btn-listen').disabled=on;$('#btn-skip').disabled=on;}
+async function onRecStop(noAudio){setRecState(false);$('#ov-judge').classList.add('show');let wav=null;
+  if(!noAudio){try{const blob=new Blob(chunks,{type:(chunks[0]&&chunks[0].type)||'audio/webm'});if(blob.size>1500){const ab=await (new (window.AudioContext||window.webkitAudioContext)()).decodeAudioData(await blob.arrayBuffer());wav=encWav(ab,16000);}}catch(e){}}
+  let r=null;const en=curLine().en;if(hasAPI()&&wav){try{r=await geminiJudge(wav,en);}catch(e){}}if(!r)r=mockJudge(!!wav,en);
+  $('#ov-judge').classList.remove('show');showResult(r);}
+
+/* ===== state / flow ===== */
+const ST={mode:null,si:0,li:0,role:null,scores:[],awaiting:false};
+function curScene(){return SCENES[ST.si];}
+function curLine(){return curScene().lines[ST.li];}
+function modeTitle(m){return m==='pron'?'発音チャレンジ':m==='roleplay'?'ロールプレイ':'キーフレーズ・リコール';}
+
+function openMode(m){ST.mode=m;$('#scene-mode').textContent=modeTitle(m);renderScenes();show('s-scene');}
+function renderScenes(){const list=$('#scene-list');list.innerHTML='';let cur=null;
+  SCENES.forEach((sc,i)=>{if(sc.chap!==cur){cur=sc.chap;const h=document.createElement('div');h.className='chap-h';h.textContent=sc.chap;list.appendChild(h);}
+    const b=document.createElement('button');b.className='scene-card';
+    b.innerHTML=`<span class="no">${i+1}</span><span class="b"><span class="t">${esc(sceneShort(sc))}</span><span class="d">${sc.lines.length}行の対話</span></span><span class="ms chev">chevron_right</span>`;
+    b.onclick=()=>pickScene(i);list.appendChild(b);});}
+function pickScene(i){ST.si=i;ST.li=0;ST.scores=[];
+  if(ST.mode==='roleplay'){renderRolePick();show('s-role');}else startPlay();}
+
+function renderRolePick(){const sc=curScene();$('#role-scene').textContent=sceneShort(sc);
+  const roles=[...new Set(sc.lines.map(l=>l.spk))];const wrap=$('#rolepick');wrap.innerHTML='';
+  roles.forEach((r,i)=>{const b=document.createElement('button');b.className='rolebtn';
+    b.innerHTML=`<div class="av" style="background:${i?'#F59E0B':'#2563EB'}">${esc(r[0])}</div><div class="nm">${esc(r)}</div><div class="role">${i?'相手役を相棒に':'この人を演じる'}</div>`;
+    b.onclick=()=>{ST.role=r;startPlay();};wrap.appendChild(b);});}
+
+function startPlay(){ST.li=0;ST.scores=[];$('#play-title').textContent=modeTitle(ST.mode);show('s-play');enterStep();}
+
+function setProg(){const n=curScene().lines.length;$('#prog').style.width=Math.round(ST.li/n*100)+'%';$('#play-prog').textContent=`${Math.min(ST.li+1,n)} / ${n}`;}
+function hideOverlays(){$('#ov-res').classList.remove('show');$('#ov-judge').classList.remove('show');}
+
+function enterStep(){
+  hideOverlays();setProg();
+  if(ST.li>=curScene().lines.length){endScene();return;}
+  const line=curLine();
+  $('#gloss').innerHTML='';$('#extra').innerHTML='';$('#role-line').innerHTML='';$('#goal-ja').textContent='';
+  if(ST.mode==='pron')stepPron(line);
+  else if(ST.mode==='roleplay')stepRole(line);
+  else stepRecall(line);
+}
+
+/* --- MODE 1: pron --- */
+function stepPron(line){
+  $('#controls').style.display='';$('#rec-hint').style.display='';
+  $('#role-line').innerHTML=`<span class="roletag you"><span class="ms fill">graphic_eq</span>あなたのセリフ</span>`;
+  $('#goal-ja').textContent=line.ja||'';
+  $('#prompt').innerHTML='&ldquo;'+esc(line.en)+'&rdquo;';
+  $('#gloss').innerHTML=glossOf(line).map(g=>`<span>${esc(g)}</span>`).join('');
+  $('#btn-listen').onclick=()=>{if(!recording())playModel(line.en);};
+  $('#btn-skip').onclick=()=>{if(!recording()){ST.li++;enterStep();}};
+}
+
+/* --- MODE 2: roleplay --- */
+async function stepRole(line){
+  const mine=line.spk===ST.role;
+  if(!mine){ // partner: show + play, auto-advance
+    $('#controls').style.display='none';$('#rec-hint').style.display='none';
+    $('#role-line').innerHTML=`<span class="roletag partner"><span class="ms fill">smart_toy</span>${esc(line.spk)}（相手）</span>`;
+    $('#prompt').innerHTML='';
+    $('#extra').innerHTML=`<div class="partner-bubble"><div class="en">${esc(line.en)}</div><div class="ja ja">${esc(line.ja||'')}</div></div>`;
+    await playModel(line.en);
+    setTimeout(()=>{ST.li++;enterStep();},500);
+  }else{ // mine: record
+    $('#controls').style.display='';$('#rec-hint').style.display='';
+    $('#role-line').innerHTML=`<span class="roletag you"><span class="ms fill">mic</span>あなた（${esc(ST.role)}）の番</span>`;
+    $('#goal-ja').textContent=line.ja||'';
+    $('#prompt').innerHTML=prefs.ccOn?('&ldquo;'+esc(line.en)+'&rdquo;'):'<span class="hidden-en">タップで手本を確認…</span>';
+    $('#gloss').innerHTML=glossOf(line).map(g=>`<span>${esc(g)}</span>`).join('');
+    $('#prompt').onclick=()=>{$('#prompt').innerHTML='&ldquo;'+esc(line.en)+'&rdquo;';};
+    $('#btn-listen').onclick=()=>{if(!recording())playModel(line.en);};
+    $('#btn-skip').onclick=()=>{if(!recording()){ST.li++;enterStep();}};
+  }
+}
+
+/* --- MODE 3: recall --- */
+function stepRecall(line){
+  $('#controls').style.display='none';$('#rec-hint').style.display='none';
+  ST.awaiting=true;
+  const toks=tokensOf(line.en);
+  // pick a salient blank: longest content word
+  let bi=0,best=-1;toks.forEach((w,i)=>{const c=norm(w);if(['the','a','an','is','are','was','to','of','in','and','i','you','he','she','it'].includes(c))return;if(c.length>best){best=c.length;bi=i;}});
+  const answer=toks[bi];
+  $('#role-line').innerHTML=`<span class="roletag partner"><span class="ms fill">hearing</span>手本を聞いて、抜けた語を当てよう</span>`;
+  $('#goal-ja').textContent=line.ja||'';
+  $('#prompt').innerHTML='&ldquo;'+toks.map((w,i)=>i===bi?'<span class="blank">'+esc(w)+'</span>':esc(w)).join(' ')+'&rdquo;';
+  // distractors
+  const used=new Set([norm(answer)]),pool=[];
+  curScene().lines.forEach(l=>tokensOf(l.en).forEach(w=>{if(!used.has(norm(w))){pool.push(w);}}));
+  ['friendly','soft','easy','small','game','heart','power','cute'].forEach(w=>{if(!used.has(norm(w)))pool.push(w);});
+  const picks=[answer];while(picks.length<4&&pool.length){const j=Math.random()*pool.length|0;const w=pool.splice(j,1)[0];if(!used.has(norm(w))){used.add(norm(w));picks.push(w);}}
+  const ch=shuffle(picks);
+  const box=document.createElement('div');box.className='choices';
+  ch.forEach((w,i)=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<span class="k">${String.fromCharCode(65+i)}</span><span>${esc(w)}</span>`;
+    b.onclick=()=>recallPick(w,answer,b,bi,line);box.appendChild(b);});
+  $('#extra').innerHTML='';$('#extra').appendChild(box);
+  playModel(line.en); // play model first
+}
+function recallPick(w,answer,btn,bi,line){
+  if(!ST.awaiting)return;ST.awaiting=false;
+  const correct=norm(w)===norm(answer);const btns=[...btn.parentElement.children];
+  btns.forEach(b=>{b.onclick=null;const t=norm(b.textContent.replace(/^[A-D]/,''));if(t===norm(answer))b.classList.add('correct');else if(b===btn&&!correct)b.classList.add('wrong');else b.classList.add('dim');});
+  if(correct){sfxGood();const toks=tokensOf(line.en);$('#prompt').innerHTML='&ldquo;'+toks.map((t,i)=>i===bi?'<b style="color:var(--g)">'+esc(t)+'</b>':esc(t)).join(' ')+'&rdquo;';prefs.points+=20;ST.scores.push(1);}
+  else{sfxBad();ST.scores.push(0);}
+  save();updPts();
+  setTimeout(()=>{ST.li++;enterStep();},correct?900:1400);
+}
+
+/* ===== result (modes 1 & 2) ===== */
+function showResult(r){
+  $('#ov-res').classList.add('show');
+  $('#res-num').textContent=r.score;$('#res-num').style.color=r.score>=80?'var(--g)':r.score>=55?'var(--text)':'var(--rec)';
+  $('#bar-exp').style.width='0%';requestAnimationFrame(()=>{$('#bar-exp').style.width=r.expression+'%';});
+  $('#res-words').innerHTML=r.words.map(x=>`<span class="w ${x.r===2?'g':x.r===1?'y':'r'}">${esc(x.w)}</span>`).join('');
+  $('#res-comment').innerHTML='&ldquo;'+esc(r.comment_en)+'&rdquo;';$('#res-comment-ja').textContent=r.comment_ja||'';
+  prefs.points+=r.score;save();updPts();ST.scores.push(r.score);
+  $('#res-retry').onclick=()=>{hideOverlays();};
+  $('#res-next').onclick=()=>{hideOverlays();ST.li++;enterStep();};
+}
+
+/* ===== end ===== */
+function endScene(){
+  let label,score;
+  if(ST.mode==='recall'){const c=ST.scores.filter(x=>x).length;score=`${c}/${ST.scores.length}`;label=`${curScene().lines.length}行中 ${c} 問正解`;$('#end-score').textContent=score+' 正解';}
+  else{const arr=ST.scores.filter(x=>typeof x==='number');const avg=arr.length?Math.round(arr.reduce((a,c)=>a+c,0)/arr.length):0;$('#end-score').textContent=avg+' 点';label=`平均スコア ${avg} / 100`;}
+  $('#end-sub').textContent=`${modeTitle(ST.mode)} · ${sceneShort(curScene())} · ${label}`;
+  show('s-end');
+}
+
+/* ===== wiring ===== */
+$$('.mode').forEach(b=>b.onclick=()=>openMode(b.dataset.mode));
+$('#scene-back').onclick=()=>show('s-home');
+$('#role-back').onclick=()=>show('s-scene');
+$('#play-back').onclick=()=>{stopRec();if(ST.mode==='roleplay')show('s-role');else show('s-scene');};
+$('#play-cap').onclick=()=>{prefs.ccOn=!prefs.ccOn;save();applyCC();const l=curLine&&curScene().lines[ST.li];if(l&&ST.mode==='roleplay'&&l.spk===ST.role)$('#prompt').innerHTML=prefs.ccOn?('&ldquo;'+esc(l.en)+'&rdquo;'):'<span class="hidden-en">タップで手本を確認…</span>';};
+$('#btn-rec').onclick=()=>{ic();if(ST.mode==='recall')return;if(recording())stopRec();else startRec();};
+$('#end-again').onclick=()=>{ST.li=0;ST.scores=[];if(ST.mode==='roleplay'){show('s-role');}else startPlay();};
+$('#end-next').onclick=()=>{ST.si=(ST.si+1)%SCENES.length;ST.li=0;ST.scores=[];if(ST.mode==='roleplay'){renderRolePick();show('s-role');}else startPlay();};
+$('#end-home').onclick=()=>show('s-home');
+function openSet(){$('#set-key').value=prefs.apiKey||'';$('#set-voice').value=prefs.voice;$('#sw-cc').classList.toggle('on',prefs.ccOn);$('#sw-sfx').classList.toggle('on',prefs.sfxOn);$('#mask').classList.add('open');}
+$('#gear').onclick=openSet;$('#pts-btn').onclick=openSet;
+$('#set-done').onclick=()=>{prefs.apiKey=$('#set-key').value.trim();prefs.voice=$('#set-voice').value;save();$('#mask').classList.remove('open');};
+$('#mask').onclick=e=>{if(e.target.id==='mask')$('#set-done').click();};
+$('#sw-cc').onclick=()=>{prefs.ccOn=!prefs.ccOn;$('#sw-cc').classList.toggle('on',prefs.ccOn);save();applyCC();};
+$('#sw-sfx').onclick=()=>{prefs.sfxOn=!prefs.sfxOn;$('#sw-sfx').classList.toggle('on',prefs.sfxOn);save();};
+$('#reset-pts').onclick=()=>{prefs.points=0;save();updPts();};
+document.addEventListener('pointerdown',ic,{once:true});
+
+/* ===== optional xlsx loader ===== */
+async function loadBank(){if(typeof XLSX==='undefined')return;
+  for(const f of ['scenes.xlsx','カービィの魅力.xlsx']){try{const res=await fetch(f);if(!res.ok)continue;const wb=XLSX.read(await res.arrayBuffer(),{type:'array'});const rows=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:''});const map={},order=[];
+    rows.forEach(r=>{const chap=String(r['チャプター名']||'').trim(),scene=String(r['シーン名']||'').trim(),en=String(r['英会話']||'').trim();if(!chap||!scene||!en)return;const key=chap+'|'+scene;if(!map[key]){map[key]={chap,scene,lines:[]};order.push(key);}map[key].lines.push({spk:String(r['話者']||'').trim(),en,chunk:String(r['語順訳']||r['手順３で作成した語順訳']||'').trim(),ja:String(r['和訳']||'').trim()});});
+    const out=order.map(k=>map[k]);if(out.length){SCENES=out;toast('コンテンツを読み込みました');return;}}catch(e){}}}
+
+applyCC();updPts();loadBank();
+</script>
+</body>
+</html>

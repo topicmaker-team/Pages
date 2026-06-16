@@ -17,7 +17,7 @@
 
 // 許可する公開元(あなたの Pages ドメインに変更してください)。
 // 開発中だけ '*' でも動きますが、本番は必ず自分のドメインに絞ること。
-const ALLOW_ORIGIN = 'https://topicmaker-git.github.io';
+const ALLOW_ORIGIN = 'https://topicmaker-team.github.io';
 
 const GEMINI_HOST = 'https://generativelanguage.googleapis.com';
 

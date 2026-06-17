@@ -6,6 +6,15 @@
 
 ---
 
+## あいぼうトーク（aibou-talk） <a id="aibou-talk"></a>
+- **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-12
+- **URL**: https://devel.enhack.app/static/playground/english-quiz-studio/aibou-talk.html
+- **GitHub**: https://github.com/topicmaker-team/aibou-talk
+- **概要**: 「英語で英語を学ぶ」をイメージし、友達キャラ（あいぼう）に英語を教わるスタイルの学習コンテンツ。授業のテキストと音声は、選んだトピック・難易度に合わせて Gemini が生成（クイズの答えに合わせて生成されることもある）。Claudeチャットで制作。
+- **クイズ**: レベルに応じて、穴埋めに加え comprehension（内容理解の確認）、opinion（正誤なしの「どう思う？」）を出題。
+- **ミニゲーム**: 生成待ちの間に遊べる英単語の野球ゲーム。ボールがバットに近づいた瞬間に SWING! を押し、正解で加点・不正解で減点（空振り・正解の見逃しも減点）。原稿はExcelから読み込み。
+- **キャラ**: [えもつく](#emotsuku) 等のキャラ生成ツールで作成したものを利用。
+
 ## Gemini 3.5 Live Translate デモ <a id="gemini-live-translate"></a>
 - **作成者**: 高橋 / **作成日・最終更新**: 2026-06-10
 - **URL**: https://devel.enhack.app/static/playground/gemini/translate.html

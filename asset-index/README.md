@@ -3,12 +3,10 @@
 AI生成による制作物（ツール・画像・動画など）のURLと更新状況をまとめた台帳です。
 カテゴリ別にページを分けています。下の一覧表のタイトルから各詳細へ飛べます。
 
-**最終更新: 2026-06-15 ／ 登録数: 39**
+**最終更新: 2026-06-12 ／ 登録数: 32**
 
 ## カテゴリ別ページ
 - 📱 [公開アプリ（プロダクト）](apps.md)
-- 🎮 [ゲーム](games.md)
-- 🔌 [開発ツール・連携](tools.md)
 - 🧩 [GENERATOR（生成ツール）](generators.md)
 - 🖼 [画像デザイン](images.md)
 - 🎬 [動画デザイン](videos.md)
@@ -20,8 +18,6 @@ AI生成による制作物（ツール・画像・動画など）のURLと更新
 | タグ | 種別 | 説明 |
 |---|---|---|
 | 📱 | 公開アプリ | ちょい英語の公開用アプリ本体（デッキ群など） |
-| 🎮 | ゲーム | 英語学習用のゲーム・ミニゲーム（実験的・プロトタイプ含む） |
-| 🔌 | 開発ツール・連携 | MCPサーバー・API・外部連携など、制作を支える開発／連携ツール |
 | 🧩 | GENERATOR | 画像・コンテンツを生成するブラウザツール / スクリプト |
 | 🖼 | 画像デザイン | 生成した画像・イラスト・インフォグラフィック等 |
 | 🎬 | 動画デザイン | 生成・編集した動画、動画化の実験 |
@@ -34,14 +30,7 @@ AI生成による制作物（ツール・画像・動画など）のURLと更新
 
 | 種別 | タイトル | 作成者 | 作成日 | 最終更新 | リンク |
 |---|---|---|---|---|---|
-| 🎮 | [Choiwood Games（発音ゲーム）](games.md#choiwood-games) | 島谷 | 2026-06-15 | 2026-06-15 | [開く](https://topicmaker-team.github.io/Pages/apps/choiwood-games/) |
-| 🔌 | [enHack 構文解析 MCP サーバー](tools.md#enhack-mcp) | 高橋 | 2026-06-15 | 2026-06-15 | [MCP](https://enhackmcp.onrender.com/mcp) |
-| 🎮 | [Choiwood 採点プロンプト編集ツール](games.md#choiwood-dev) | 鈴木 | 2026-06-15 | 2026-06-15 | [開く](https://devel.enhack.app/static/playground/english-quiz-studio/choiwood-dev.html) |
-| 🎮 | [ワードキャッチバトル（Word Catch Battle）](games.md#word-catch-battle) | 島谷 | 2026-06-15 | 2026-06-15 | [開く](https://claude.ai/public/artifacts/1ab8392e-6d5e-422a-829f-ab964002586f) |
-| 🎮 | [Choiwood Audition](games.md#choiwood-audition) | 鈴木 | 2026-06-15 | 2026-06-15 | [開く](https://devel.enhack.app/static/playground/english-quiz-studio/choiwood-audition.html) |
-| 🎮 | [モグラたたきフレーズゲーム](games.md#mogura-phrase-game) | 草薙 / 肥後 | 2026-06-15 | 2026-06-15 | [原案](https://drive.google.com/file/d/1aAJBK1dZ2MyzWODQchswcQrSsmFz9lpe/view?usp=drive_link) |
-| 🎮 | [word racer](games.md#word-racer) | 高橋 | 2026-06-13 | 2026-06-13 | [開く](https://claude.ai/public/artifacts/2060cd93-5530-4d3d-9fda-a9b085a406ec) |
-| 🎮 | [あいぼうトーク（aibou-talk）](games.md#aibou-talk) | 鈴木 | 2026-06-12 | 2026-06-12 | [開く](https://devel.enhack.app/static/playground/english-quiz-studio/aibou-talk.html) |
+| 🧩 | [あいぼうトーク（aibou-talk）](generators.md#aibou-talk) | 鈴木 | 2026-06-12 | 2026-06-12 | [開く](https://devel.enhack.app/static/playground/english-quiz-studio/aibou-talk.html) |
 | 📱 | [語彙系デッキ](apps.md#deck-goi) | 高橋 ほか | — | 2026-06-11 | [単語(ダミー版)](https://devel.enhack.app/static/playground/choi/wordsTraining-bundle.html?mock=mock/wordsTraining.json) |
 | 📱 | [企画系デッキ（カービィ）](apps.md#deck-kikaku) | 高橋 / 鈴木 | 2026-05-13 | 2026-05-18 | [開く](https://devel.enhack.app/static/playground/choi/miniDevBook.html?url=kirby%2Findex.json&build=bundle) |
 | 📱 | [ニュース系デッキ](apps.md#deck-news) | — | — | — | （URL未定） |

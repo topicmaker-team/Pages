@@ -6,6 +6,12 @@
 
 ---
 
+## 地雷発音 Pronunciation Minefield <a id="pronunciation-minefield"></a>
+- **作成者**: 高橋 / **作成日・最終更新**: 2026-06-17
+- **URL**: https://devel.enhack.app/static/playground/PronunciationMinefield/pronunciation_minefield.html
+- **概要**: 「いい加減な発音が、身を滅ぼす」。日本人が発音しづらい“地雷発音”を含む例文を発話し、発音の良し悪しで相手の反応が変わるゲーム。島谷さんのオーストラリアでの実体験（clutch が現地で crotch と受け取られた）にインスパイアされて制作。
+- **メモ**: Settings に Gemini API Key を設定すると、相手の英語がよりいきいきとした応答になる。
+
 ## Speak Up Choicy（音声認識・会話フレーズ練習） <a id="speak-up-choicy"></a>
 - **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-17
 - **URL**: https://devel.enhack.app/static/playground/speak-up-choicy/

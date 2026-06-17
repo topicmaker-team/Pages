@@ -6,6 +6,18 @@
 
 ---
 
+## 地雷発音 Pronunciation Minefield <a id="pronunciation-minefield"></a>
+- **作成者**: 高橋 / **作成日・最終更新**: 2026-06-17
+- **URL**: https://devel.enhack.app/static/playground/PronunciationMinefield/pronunciation_minefield.html
+- **概要**: 「いい加減な発音が、身を滅ぼす」。日本人が発音しづらい“地雷発音”を含む例文を発話し、発音の良し悪しで相手の反応が変わるゲーム。島谷さんのオーストラリアでの実体験（clutch が現地で crotch と受け取られた）にインスパイアされて制作。
+- **メモ**: Settings に Gemini API Key を設定すると、相手の英語がよりいきいきとした応答になる。
+
+## Speak Up Choicy（音声認識・会話フレーズ練習） <a id="speak-up-choicy"></a>
+- **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-17
+- **URL**: https://devel.enhack.app/static/playground/speak-up-choicy/
+- **概要**: 音声認識タイプの会話フレーズ練習ゲーム。質問者・回答者のどちらかの役になって練習するスタイル（先日のMTGでの草薙案のイメージ）。現在は各シーン1フレーズの会話が3点用意され、ランダムで出題。
+- **メモ**: 画像はダミー（シーン背景もほぼ1種類のため内容に合わないことあり。会話ごとに別画像の設定は可能）。ヘッダー右上の設定でBGM・日本語訳のON/OFF。初回は画像・音声の読み込みに時間がかかることあり。結果画面に発音記号、お手本と自分の声の聞き比べを搭載。
+
 ## Choiwood Games（発音ゲーム） <a id="choiwood-games"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-15
 - **URL**: https://topicmaker-team.github.io/Pages/apps/choiwood-games/

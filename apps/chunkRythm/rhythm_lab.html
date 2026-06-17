@@ -78,7 +78,11 @@ h1.title{font-family:"Fredoka";font-weight:600;font-size:30px;line-height:1.12;m
 .beat.w .lab{font-weight:500;color:#97a3b1;font-size:14px}
 .beat.n .lab{color:var(--choicy);font-weight:700}
 
-.controls{display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0 2px}
+.controls{display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0 2px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.seg button{border:0;background:#fff;color:var(--sub);font-family:"Fredoka";font-weight:600;font-size:12.5px;padding:9px 13px;cursor:pointer;transition:.12s}
+.seg button.on{background:var(--accent);color:#fff}
+.seg-label{font-size:12px;color:var(--sub)}
 .btn{border:0;cursor:pointer;border-radius:12px;font-family:"Fredoka";font-weight:600;font-size:14px;padding:11px 16px;display:inline-flex;align-items:center;gap:7px;transition:.15s}
 .btn.ghost{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
 .btn.ghost:hover{background:#eef3f8}
@@ -200,6 +204,7 @@ function renderList(){
 /* ---------- 画面2：リズム ---------- */
 let AC=null; function ctx(){return AC||(AC=new (window.AudioContext||window.webkitAudioContext)());}
 let recState={active:false};
+let EXAG=true;  // お手本の強調モード（true=おおげさ）
 
 function renderRhythm(p){
   setBack(renderList);
@@ -223,6 +228,11 @@ function renderRhythm(p){
     </div>
     <div class="controls">
       <button class="btn ghost" id="hear"><span class="material-symbols-rounded">volume_up</span>お手本</button>
+      <span class="seg-label">強調</span>
+      <div class="seg" id="exag">
+        <button data-x="0">ふつう</button>
+        <button data-x="1" class="on">おおげさ</button>
+      </div>
       <button class="btn ghost" id="beat"><span class="material-symbols-rounded">graphic_eq</span>リズム</button>
     </div>
     <div class="controls"><button class="rec" id="rec"><span class="material-symbols-rounded">mic</span></button></div>
@@ -230,7 +240,12 @@ function renderRhythm(p){
     <div class="result" id="result"></div>
   </div>`);
 
-  $('#hear',wrap).onclick=()=>sayPhrase(p);
+  $('#hear',wrap).onclick=()=>sayPhrase(p,wrap,EXAG);
+  $('#exag',wrap).querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    EXAG=b.dataset.x==='1';
+    $('#exag',wrap).querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+    sayPhrase(p,wrap,EXAG);
+  });
   $('#beat',wrap).onclick=()=>playBeat(p,wrap);
   wireRec(p,$('#rec',wrap),$('#hint',wrap),$('#result',wrap),wrap);
   show(wrap);
@@ -238,7 +253,33 @@ function renderRhythm(p){
 }
 
 /* お手本（語）＝ speechSynthesis */
-function sayPhrase(p){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text(p));u.lang='en-US';u.rate=.9;speechSynthesis.speak(u);}catch(e){}}
+/* お手本：ふつう＝文全体を自然に / おおげさ＝語ごとに強弱を付けてリズムを強調 */
+const STRESS = {  // 0=弱(機能語) 1=強(内容語) 2=核
+  0:{rate:1.35, pitch:0.8,  vol:0.55},
+  1:{rate:0.80, pitch:1.20, vol:1.0 },
+  2:{rate:0.60, pitch:1.42, vol:1.0 }
+};
+function sayPhrase(p,wrap,exag){
+  try{speechSynthesis.cancel();}catch(e){}
+  if(!exag){
+    try{const u=new SpeechSynthesisUtterance(text(p));u.lang='en-US';u.rate=.95;speechSynthesis.speak(u);}catch(e){}
+    return;
+  }
+  const beats=wrap?[...wrap.querySelectorAll('.beat')]:[];
+  const seq=flat(p); let i=0;
+  const speakNext=()=>{
+    if(i>=seq.length)return;
+    const w=seq[i], s=STRESS[w[1]];
+    const b=beats[i]; if(b){b.classList.add('pop');setTimeout(()=>b.classList.remove('pop'),180);}
+    let u;
+    try{u=new SpeechSynthesisUtterance(w[0]);}catch(e){return;}
+    u.lang='en-US'; u.rate=s.rate; u.pitch=s.pitch; u.volume=s.vol;
+    u.onend=()=>{ const gap=(w[1]===2?240:0)+(isChunkEnd(p,i)?210:50); i++; setTimeout(speakNext,gap); };
+    u.onerror=()=>{ i++; setTimeout(speakNext,60); };
+    speechSynthesis.speak(u);
+  };
+  speakNext();
+}
 
 /* リズム＝ビートを順に光らせ、強い拍でクリック音 */
 function playBeat(p,wrap){

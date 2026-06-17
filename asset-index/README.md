@@ -3,7 +3,7 @@
 AI生成による制作物（ツール・画像・動画など）のURLと更新状況をまとめた台帳です。
 カテゴリ別にページを分けています。下の一覧表のタイトルから各詳細へ飛べます。
 
-**最終更新: 2026-06-17 ／ 登録数: 41**
+**最終更新: 2026-06-17 ／ 登録数: 42**
 
 ## カテゴリ別ページ
 - 📱 [公開アプリ（プロダクト）](apps.md)
@@ -34,6 +34,7 @@ AI生成による制作物（ツール・画像・動画など）のURLと更新
 
 | 種別 | タイトル | 作成者 | 作成日 | 最終更新 | リンク |
 |---|---|---|---|---|---|
+| 🎮 | [chunkはリズム（Rhythm Lab）](games.md#chunk-rhythm) | 島谷 | 2026-06-17 | 2026-06-17 | [開く](https://topicmaker-team.github.io/Pages/apps/chunkRythm/rhythm_lab.html) |
 | 🎮 | [地雷発音 Pronunciation Minefield](games.md#pronunciation-minefield) | 高橋 | 2026-06-17 | 2026-06-17 | [開く](https://devel.enhack.app/static/playground/PronunciationMinefield/pronunciation_minefield.html) |
 | 🎮 | [Speak Up Choicy（音声認識会話練習）](games.md#speak-up-choicy) | 鈴木 | 2026-06-17 | 2026-06-17 | [開く](https://devel.enhack.app/static/playground/speak-up-choicy/) |
 | 🎮 | [Choiwood Games（発音ゲーム）](games.md#choiwood-games) | 島谷 | 2026-06-15 | 2026-06-15 | [開く](https://topicmaker-team.github.io/Pages/apps/choiwood-games/) |

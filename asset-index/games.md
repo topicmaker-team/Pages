@@ -6,6 +6,12 @@
 
 ---
 
+## chunkはリズム（Rhythm Lab） <a id="chunk-rhythm"></a>
+- **作成者**: 島谷 / **作成日・最終更新**: 2026-06-17
+- **URL**: https://topicmaker-team.github.io/Pages/apps/chunkRythm/rhythm_lab.html
+- **概要**: 発話の波形を表示し、chunk（語のまとまり）を「リズム」として捉えるための練習ラボ。どの単語をはっきり発声するか（強弱）が要点で、草薙さんの「冠詞はほとんど聞こえない」という指摘のように、弱く読む箇所も含めてリズムを意識する狙い。
+- **メモ**: 現状は波形表示のみ。今後、chunkのリズム（強弱・どこを際立たせるか）もチェックできるようにする構想。topicmaker-team/Pages の GitHub Pages 上でホスト。
+
 ## 地雷発音 Pronunciation Minefield <a id="pronunciation-minefield"></a>
 - **作成者**: 高橋 / **作成日・最終更新**: 2026-06-17
 - **URL**: https://devel.enhack.app/static/playground/PronunciationMinefield/pronunciation_minefield.html

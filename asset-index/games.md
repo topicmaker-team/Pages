@@ -6,6 +6,16 @@
 
 ---
 
+## enHack Detectives Ep1（アドベンチャーゲーム） <a id="enhack-detectives"></a>
+- **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-17
+- **URL**: https://devel.enhack.app/static/playground/enhack-detectives/enHack-Detectives-Ep1.html
+- **概要**: Claude で生成したアドベンチャーゲーム風の英語学習ゲーム。制作中に Claude からの提案で [enHack 構文解析 MCP サーバー](tools.md#enhack-mcp) を利用。基本は下記のプロンプト・キャラクター画像・README をベースに、追加で調整指示を加えて生成。
+- **制作条件**: Claude（topicmakerアカウント）Opus 4.8 ／ 工数：特大 ／ 思考：オン。
+- **素材リンク**:
+  - プロンプト: https://drive.google.com/file/d/1fjoLz7psd1GGm4Uacud4dchboKK8q7o1/view?usp=sharing
+  - キャラクター画像: https://drive.google.com/drive/folders/1ZAwLum9Ngz7NwPadx5y3rqe355uV5BaV?usp=sharing
+  - README.md: https://drive.google.com/file/d/1YuHAABlNdH9Jr_46kvL_J8FKERYHWy4A/view?usp=sharing
+
 ## chunkはリズム（Rhythm Lab） <a id="chunk-rhythm"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-17
 - **URL**: https://topicmaker-team.github.io/Pages/apps/chunkRythm/rhythm_lab.html

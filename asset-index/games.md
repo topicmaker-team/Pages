@@ -6,15 +6,21 @@
 
 ---
 
-## enHack Detectives Ep1（アドベンチャーゲーム） <a id="enhack-detectives"></a>
-- **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-17
-- **URL**: https://devel.enhack.app/static/playground/enhack-detectives/enHack-Detectives-Ep1.html
-- **概要**: Claude で生成したアドベンチャーゲーム風の英語学習ゲーム。制作中に Claude からの提案で [enHack 構文解析 MCP サーバー](tools.md#enhack-mcp) を利用。基本は下記のプロンプト・キャラクター画像・README をベースに、追加で調整指示を加えて生成。
-- **制作条件**: Claude（topicmakerアカウント）Opus 4.8 ／ 工数：特大 ／ 思考：オン。
-- **素材リンク**:
+## enHack Detectives（アドベンチャーゲーム） <a id="enhack-detectives"></a>
+- **作成者**: 鈴木 / **作成日**: 2026-06-19 ／ **最終更新**: 2026-06-22
+- **URL**:
+  - v2（最新・プロトタイプ）: https://devel.enhack.app/static/playground/enhack-detectives-v2/
+  - Ep1（初版）: https://devel.enhack.app/static/playground/enhack-detectives/enHack-Detectives-Ep1.html
+- **概要**: Claude で生成したアドベンチャーゲーム風の英語学習ゲーム。制作中に Claude からの提案で [enHack 構文解析 MCP サーバー](tools.md#enhack-mcp) を利用。セリフと背景画像だけが変数なので、その生成コストのみでシリーズを無限に展開できる構成（頭にプロペラを付けた犬の名は Parser）。
+- **制作条件**: Claude（topicmakerアカウント）Opus 4.8 ／ 工数：特大 ／ 思考：オン。プロンプト・キャラクター画像・README をベースに追加指示で生成。
+- **素材リンク（Ep1）**:
   - プロンプト: https://drive.google.com/file/d/1fjoLz7psd1GGm4Uacud4dchboKK8q7o1/view?usp=sharing
   - キャラクター画像: https://drive.google.com/drive/folders/1ZAwLum9Ngz7NwPadx5y3rqe355uV5BaV?usp=sharing
   - README.md: https://drive.google.com/file/d/1YuHAABlNdH9Jr_46kvL_J8FKERYHWy4A/view?usp=sharing
+- **更新履歴**:
+  - 2026-06-20: 尋問パートで相手と実際に会話できるように。相手は疲れている設定で、ねぎらいの言葉や温かいコーヒー・ドーナツを渡すと捜査に協力的になる。構文解析パズルや音声認識リズムをミニゲームとして導入（高橋共有のプロンプトエンジニアリング記事を参考に組込み）。
+  - 2026-06-22（v2・プロトタイプ）: オープニング〜エンディングを一通り実装。学習の裏テーマを「英語の疑問文の作り方」に設定。中身は全てダミー（題材・出題形式は変更可）。
+- **コスト見積もり（Claude試算）**: LLMを使うのは「GM尋問」のみ（構文解析=enHack、リズム判定=端末内、会話/クイズ/パズル=静的データ）。gemini-2.5-flash で1尋問≈$0.006、1事件≈$0.02〜0.05、よく喋るプレイヤーでも$0.05〜0.10程度。極端ケースの保険に maxTurns を導入。flash-lite で約1/3、thinkingBudget:0 で出力最小化、AI Studio無料枠でほぼ$0運用も可能。
 
 ## chunkはリズム（Rhythm Lab） <a id="chunk-rhythm"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-17

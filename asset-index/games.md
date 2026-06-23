@@ -6,6 +6,11 @@
 
 ---
 
+## Speak Up Choicy Hub <a id="speak-up-choicy-hub"></a>
+- **作成者**: 島谷 / **作成日・最終更新**: 2026-06-23
+- **URL**: https://devel.enhack.app/static/playground/speak-up-choicy-Hub/
+- **概要**: [Speak Up Choicy](#speak-up-choicy)（鈴木作）を母艦に、草薙さんのドリルや発音動画などを組み込んだハブ版。Speak Up Choicy シリーズ。
+
 ## enHack Detectives（アドベンチャーゲーム） <a id="enhack-detectives"></a>
 - **作成者**: 鈴木 / **作成日**: 2026-06-19 ／ **最終更新**: 2026-06-22
 - **URL**:
@@ -21,6 +26,13 @@
   - 2026-06-20: 尋問パートで相手と実際に会話できるように。相手は疲れている設定で、ねぎらいの言葉や温かいコーヒー・ドーナツを渡すと捜査に協力的になる。構文解析パズルや音声認識リズムをミニゲームとして導入（高橋共有のプロンプトエンジニアリング記事を参考に組込み）。
   - 2026-06-22（v2・プロトタイプ）: オープニング〜エンディングを一通り実装。学習の裏テーマを「英語の疑問文の作り方」に設定。中身は全てダミー（題材・出題形式は変更可）。
 - **コスト見積もり（Claude試算）**: LLMを使うのは「GM尋問」のみ（構文解析=enHack、リズム判定=端末内、会話/クイズ/パズル=静的データ）。gemini-2.5-flash で1尋問≈$0.006、1事件≈$0.02〜0.05、よく喋るプレイヤーでも$0.05〜0.10程度。極端ケースの保険に maxTurns を導入。flash-lite で約1/3、thinkingBudget:0 で出力最小化、AI Studio無料枠でほぼ$0運用も可能。
+
+## Sound Lab（音声認識ミニアプリ） <a id="sound-lab"></a>
+- **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-18
+- **URL**: https://devel.enhack.app/static/playground/sound-lab/
+- **概要**: 草薙作「th発音練習フレーズ10選」と、島谷作「[chunkはリズム（Rhythm Lab）](#chunk-rhythm)」を組み合わせた、シンプルな音声認識ミニアプリ。
+- **素材**: ファイル一式 → https://drive.google.com/drive/folders/1v9n4nluhxMzSNLwRDxcJ7fAnYakAxKhA?usp=sharing
+- **制作**: アプリ=Claude、音声=Gemini TTS、動画=Veo。
 
 ## chunkはリズム（Rhythm Lab） <a id="chunk-rhythm"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-17
@@ -39,6 +51,7 @@
 - **URL**: https://devel.enhack.app/static/playground/speak-up-choicy/
 - **概要**: 音声認識タイプの会話フレーズ練習ゲーム。質問者・回答者のどちらかの役になって練習するスタイル（先日のMTGでの草薙案のイメージ）。現在は各シーン1フレーズの会話が3点用意され、ランダムで出題。
 - **メモ**: 画像はダミー（シーン背景もほぼ1種類のため内容に合わないことあり。会話ごとに別画像の設定は可能）。ヘッダー右上の設定でBGM・日本語訳のON/OFF。初回は画像・音声の読み込みに時間がかかることあり。結果画面に発音記号、お手本と自分の声の聞き比べを搭載。
+- **関連**: 本アプリを母艦にした [Speak Up Choicy Hub](#speak-up-choicy-hub)（島谷作。草薙さんのドリルや発音動画を統合）。
 
 ## Choiwood Games（発音ゲーム） <a id="choiwood-games"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-15

@@ -6,6 +6,12 @@
 
 ---
 
+## Gamebook Library（ゲームブック） <a id="gamebook-library"></a>
+- **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-23
+- **URL**: https://devel.enhack.app/static/playground/gamebook-library/
+- **概要**: ユーザーの選択で分岐し、異なるエンディングに至るゲームブック風コンテンツ（草薙案）。プロトタイプでボリュームは少なめ。途中に音声認識や選択問題などの要素も組込み（API未使用のため発音チェック等は未実装）。
+- **機能**: 気になるフレーズ・単語をストックして再学習できる仕組み（ホームヘッダーのしおりアイコンから）。音声認識で2回以上失敗したものは「Needs practice（苦手）」へ自動振り分け。ブックごとに独自機能（例: サッカー=熱狂度メーター、ホラー=制限時間つき選択）と学習テーマを設定。
+
 ## Speak Up Choicy Hub <a id="speak-up-choicy-hub"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-23
 - **URL**: https://devel.enhack.app/static/playground/speak-up-choicy-Hub/

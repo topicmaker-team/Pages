@@ -6,6 +6,14 @@
 
 ---
 
+## Veo 動画生成ツール（veo-video） <a id="veo-video"></a>
+- **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-18
+- **URL**: https://devel.enhack.app/static/playground/veo-video.html
+- **概要**: Gemini（Veo）に参照画像＋プロンプトを渡して動画を生成するブラウザツール。Claudeで制作。
+- **生成例**: 「th」の発音解説動画（舌が動くときに明るいオレンジで強調）→ https://drive.google.com/file/d/1Ddke7Xn0kkMbOxtW7tIpHi_Z6eE0XVze/view?usp=sharing
+- **生成例プロンプト**: "Please create a video explaining how to pronounce the English 'th' sound correctly. Highlight the tongue in bright orange when it moves. The narrator is a woman. Do not draw any text elements."
+- **メモ**: ナレーション台本を読ませる形にすれば、高橋作のツールで字幕付けも可能かもしれない。
+
 ## Gemini 3.5 Live Translate デモ <a id="gemini-live-translate"></a>
 - **作成者**: 高橋 / **作成日・最終更新**: 2026-06-10
 - **URL**: https://devel.enhack.app/static/playground/gemini/translate.html

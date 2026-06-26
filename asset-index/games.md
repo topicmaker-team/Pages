@@ -35,12 +35,13 @@
 
 ## Sound Lab（音声認識ミニアプリ） <a id="sound-lab"></a>
 - **作成者**: 鈴木 / **作成日**: 2026-06-18 ／ **最終更新**: 2026-06-26
-- **URL**: https://devel.enhack.app/static/playground/sound-lab/
+- **URL**:
+  - パターン1: https://devel.enhack.app/static/playground/sound-lab/
+  - パターン2: https://devel.enhack.app/static/playground/sound-lab/pronunciation-prototype.html （発話トレーニング版。HTML: https://drive.google.com/file/d/16cZZg9EvSpTzMccWte1yaqZQztpx68oZ/view?usp=sharing ）
 - **概要**: 草薙作「th発音練習フレーズ10選」と、島谷作「[chunkはリズム（Rhythm Lab）](#chunk-rhythm)」を組み合わせた、シンプルな音声認識ミニアプリ。
 - **素材**: ファイル一式 → https://drive.google.com/drive/folders/1v9n4nluhxMzSNLwRDxcJ7fAnYakAxKhA?usp=sharing
 - **制作**: アプリ=Claude、音声=Gemini TTS、動画=Veo。
-- **発話トレーニング プロトタイプ**: https://devel.enhack.app/static/playground/sound-lab/pronunciation-prototype.html （HTML: https://drive.google.com/file/d/16cZZg9EvSpTzMccWte1yaqZQztpx68oZ/view?usp=sharing ）
-- **更新（2026-06-26）**: 発話トレーニングのプロトタイプを調整。結果画面の発音評価ドットを、うまくいかなかったもの（赤）だけ表示する方式に変更。
+- **更新（2026-06-26）**: 発話トレーニング（パターン2）を調整。結果画面の発音評価ドットを、うまくいかなかったもの（赤）だけ表示する方式に変更。
 
 ## chunkはリズム（Rhythm Lab） <a id="chunk-rhythm"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-17

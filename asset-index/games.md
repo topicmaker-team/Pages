@@ -33,15 +33,21 @@
   - 2026-06-22（v2・プロトタイプ）: オープニング〜エンディングを一通り実装。学習の裏テーマを「英語の疑問文の作り方」に設定。中身は全てダミー（題材・出題形式は変更可）。
 - **コスト見積もり（Claude試算）**: LLMを使うのは「GM尋問」のみ（構文解析=enHack、リズム判定=端末内、会話/クイズ/パズル=静的データ）。gemini-2.5-flash で1尋問≈$0.006、1事件≈$0.02〜0.05、よく喋るプレイヤーでも$0.05〜0.10程度。極端ケースの保険に maxTurns を導入。flash-lite で約1/3、thinkingBudget:0 で出力最小化、AI Studio無料枠でほぼ$0運用も可能。
 
-## Sound Lab（音声認識ミニアプリ） <a id="sound-lab"></a>
+## Sound Lab（音声認識ミニアプリ・発話トレーニング） <a id="sound-lab"></a>
 - **作成者**: 鈴木 / **作成日**: 2026-06-18 ／ **最終更新**: 2026-06-26
 - **URL**:
-  - パターン1: https://devel.enhack.app/static/playground/sound-lab/
-  - パターン2: https://devel.enhack.app/static/playground/sound-lab/pronunciation-prototype.html （発話トレーニング版。HTML: https://drive.google.com/file/d/16cZZg9EvSpTzMccWte1yaqZQztpx68oZ/view?usp=sharing ）
-- **概要**: 草薙作「th発音練習フレーズ10選」と、島谷作「[chunkはリズム（Rhythm Lab）](#chunk-rhythm)」を組み合わせた、シンプルな音声認識ミニアプリ。
+  - 元アプリ（Sound Lab）: https://devel.enhack.app/static/playground/sound-lab/
+  - ちょい英語版テンプレート: https://devel.enhack.app/static/playground/sound-lab/template.html
+  - 発話トレーニング プロトタイプ v1: https://devel.enhack.app/static/playground/sound-lab/pronunciation-prototype_v1.html
+  - 発話トレーニング プロトタイプ（最新・反映中）: https://devel.enhack.app/static/playground/sound-lab/pronunciation-prototype.html （HTML: https://drive.google.com/file/d/16cZZg9EvSpTzMccWte1yaqZQztpx68oZ/view?usp=sharing ）
+- **概要**: 草薙作「th発音練習フレーズ10選」と、島谷作「[chunkはリズム（Rhythm Lab）](#chunk-rhythm)」を組み合わせた音声認識ミニアプリ（元アプリ）。これを「ちょい英語」向けの発話トレーニングへブラッシュアップ中。
+- **ちょい英語版の流れ**:
+  1. ちょい英語に似せたHTMLページを作成（自作デザインPNGからClaudeで生成）→ template.html
+  2. それに発話トレーニング機能を組み込み、打ち合わせで共有 → pronunciation-prototype_v1.html
+  3. 草薙さん用意のラフと皆のフィードバックを反映中 → pronunciation-prototype.html
 - **素材**: ファイル一式 → https://drive.google.com/drive/folders/1v9n4nluhxMzSNLwRDxcJ7fAnYakAxKhA?usp=sharing
-- **制作**: アプリ=Claude、音声=Gemini TTS、動画=Veo。
-- **更新（2026-06-26）**: 発話トレーニング（パターン2）を調整。結果画面の発音評価ドットを、うまくいかなかったもの（赤）だけ表示する方式に変更。
+- **制作ツール**: アプリ=Claude／画像・動画=Gemini／音声=SUNO（※初期の元アプリは音声=Gemini TTS・動画=Veo）。
+- **更新（2026-06-26）**: 最新プロトタイプで、結果画面の発音評価ドットを、うまくいかなかったもの（赤）だけ表示する方式に変更。
 
 ## chunkはリズム（Rhythm Lab） <a id="chunk-rhythm"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-17

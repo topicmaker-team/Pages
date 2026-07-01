@@ -3,7 +3,7 @@
 AI生成による制作物（ツール・画像・動画など）のURLと更新状況をまとめた台帳です。
 カテゴリ別にページを分けています。下の一覧表のタイトルから各詳細へ飛べます。
 
-**最終更新: 2026-06-26 ／ 登録数: 47**
+**最終更新: 2026-07-01 ／ 登録数: 48**
 
 ## カテゴリ別ページ
 - 📱 [公開アプリ（プロダクト）](apps.md)
@@ -34,7 +34,8 @@ AI生成による制作物（ツール・画像・動画など）のURLと更新
 
 | 種別 | タイトル | 作成者 | 作成日 | 最終更新 | リンク |
 |---|---|---|---|---|---|
-| 🎮 | [Sound Lab（音声認識・発話トレーニング）](games.md#sound-lab) | 鈴木 | 2026-06-18 | 2026-06-26 | [開く](https://devel.enhack.app/static/playground/sound-lab/) |
+| 🎮 | [Sound Lab（音声認識・発話トレーニング）](games.md#sound-lab) | 鈴木ほか | 2026-06-18 | 2026-07-01 | [開く](https://devel.enhack.app/static/playground/sound-lab/) |
+| 🎮 | [キーフレーズアプリ（シャッフル）](games.md#keyphrase-shuffle) | 草薙 | 2026-06-30 | 2026-06-30 | [開く](https://devel.enhack.app/static/playground/kusanagi2/keyphrase-shuffle2.html) |
 | 🎮 | [Gamebook Library（ゲームブック）](games.md#gamebook-library) | 鈴木 | 2026-06-23 | 2026-06-23 | [開く](https://devel.enhack.app/static/playground/gamebook-library/) |
 | 🎮 | [Speak Up Choicy Hub](games.md#speak-up-choicy-hub) | 島谷 | 2026-06-23 | 2026-06-23 | [開く](https://devel.enhack.app/static/playground/speak-up-choicy-Hub/) |
 | 🎮 | [enHack Detectives（アドベンチャー）](games.md#enhack-detectives) | 鈴木 | 2026-06-19 | 2026-06-22 | [開く](https://devel.enhack.app/static/playground/enhack-detectives-v2/) |

@@ -34,12 +34,13 @@
 - **コスト見積もり（Claude試算）**: LLMを使うのは「GM尋問」のみ（構文解析=enHack、リズム判定=端末内、会話/クイズ/パズル=静的データ）。gemini-2.5-flash で1尋問≈$0.006、1事件≈$0.02〜0.05、よく喋るプレイヤーでも$0.05〜0.10程度。極端ケースの保険に maxTurns を導入。flash-lite で約1/3、thinkingBudget:0 で出力最小化、AI Studio無料枠でほぼ$0運用も可能。
 
 ## Sound Lab（音声認識ミニアプリ・発話トレーニング） <a id="sound-lab"></a>
-- **作成者**: 鈴木 / **作成日**: 2026-06-18 ／ **最終更新**: 2026-06-26
+- **作成者**: 鈴木 ほか（higo・島谷） / **作成日**: 2026-06-18 ／ **最終更新**: 2026-07-01
 - **URL**:
   - 元アプリ（Sound Lab）: https://devel.enhack.app/static/playground/sound-lab/
   - ちょい英語版テンプレート: https://devel.enhack.app/static/playground/sound-lab/template.html
   - 発話トレーニング プロトタイプ v1: https://devel.enhack.app/static/playground/sound-lab/pronunciation-prototype_v1.html
   - 発話トレーニング プロトタイプ（最新・反映中）: https://devel.enhack.app/static/playground/sound-lab/pronunciation-prototype.html （HTML: https://drive.google.com/file/d/16cZZg9EvSpTzMccWte1yaqZQztpx68oZ/view?usp=sharing ）
+  - プロソディ／ピッチ トレーナー（鈴木）: https://devel.enhack.app/static/playground/sound-lab/prosody-trainer.html
 - **概要**: 草薙作「th発音練習フレーズ10選」と、島谷作「[chunkはリズム（Rhythm Lab）](#chunk-rhythm)」を組み合わせた音声認識ミニアプリ（元アプリ）。これを「ちょい英語」向けの発話トレーニングへブラッシュアップ中。
 - **ちょい英語版の流れ**:
   1. ちょい英語に似せたHTMLページを作成（自作デザインPNGからClaudeで生成）→ template.html
@@ -47,7 +48,17 @@
   3. 草薙さん用意のラフと皆のフィードバックを反映中 → pronunciation-prototype.html
 - **素材**: ファイル一式 → https://drive.google.com/drive/folders/1v9n4nluhxMzSNLwRDxcJ7fAnYakAxKhA?usp=sharing
 - **制作ツール**: アプリ=Claude／画像・動画=Gemini／音声=SUNO（※初期の元アプリは音声=Gemini TTS・動画=Veo）。
-- **更新（2026-06-26）**: 最新プロトタイプで、結果画面の発音評価ドットを、うまくいかなかったもの（赤）だけ表示する方式に変更。
+- **更新履歴**:
+  - 2026-06-26（鈴木）: 結果画面の発音評価ドットを、うまくいかなかったもの（赤）だけ表示する方式に変更。
+  - 2026-06-30（higo）: pronunciation-prototype に「リアルタイム ピッチ ビジュアライザー」を追加。mp3を読み込んで再生するとピッチ波形を表示。
+  - 2026-06-30（鈴木）: 別ページ prosody-trainer.html を追加（プロソディ／ピッチのトレーナー、ピッチ線の重ね表示は調整中）。「理論」パートは、草薙共有の英語音声ピッチ変動のGemini分析を ChatGPT／Claude でまとめたものが元。
+  - 2026-07-01（島谷）: レビュー指摘「機能語も文脈で強くなる（例：Use THIS の this）」を反映。各文の単語ごとの強弱をコンテンツ生成時に生成AIへ一緒に判定させ、表示用データとして保持。機能語／内容語を区別せず強さを0〜3の数値で扱うため、"this" のように文脈で強い機能語もモデル音声どおり強く表示可能。お手本の強弱はバブルの大きさだけで示す形に変更（弱／内容／強／核ラベルを廃止）。
+
+## キーフレーズアプリ（シャッフル） <a id="keyphrase-shuffle"></a>
+- **作成者**: 草薙 / **作成日・最終更新**: 2026-06-30
+- **URL**: https://devel.enhack.app/static/playground/kusanagi2/keyphrase-shuffle2.html
+- **概要**: キーフレーズ学習アプリ。1テーマ6キーフレーズの中でシャッフル再生ができる。お気に入りボタンでピックアップして再生も可能。前日送付版のUI改善版。
+- **メモ**: 会話表示を改善中（1センテンス単位で単語カードのように繰り返し学習できる方向）。
 
 ## chunkはリズム（Rhythm Lab） <a id="chunk-rhythm"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-17

@@ -55,10 +55,13 @@
   - 2026-07-01（島谷）: レビュー指摘「機能語も文脈で強くなる（例：Use THIS の this）」を反映。各文の単語ごとの強弱をコンテンツ生成時に生成AIへ一緒に判定させ、表示用データとして保持。機能語／内容語を区別せず強さを0〜3の数値で扱うため、"this" のように文脈で強い機能語もモデル音声どおり強く表示可能。お手本の強弱はバブルの大きさだけで示す形に変更（弱／内容／強／核ラベルを廃止）。
 
 ## キーフレーズアプリ（シャッフル） <a id="keyphrase-shuffle"></a>
-- **作成者**: 草薙 / **作成日・最終更新**: 2026-06-30
-- **URL**: https://devel.enhack.app/static/playground/kusanagi2/keyphrase-shuffle2.html
+- **作成者**: 草薙 / **作成日**: 2026-06-30 ／ **最終更新**: 2026-07-01
+- **URL**:
+  - シャッフル版: https://devel.enhack.app/static/playground/kusanagi2/keyphrase-shuffle2.html
+  - 並び替えクイズ版: https://devel.enhack.app/static/playground/kusanagi2/keyphrase-shuffle3.html
 - **概要**: キーフレーズ学習アプリ。1テーマ6キーフレーズの中でシャッフル再生ができる。お気に入りボタンでピックアップして再生も可能。前日送付版のUI改善版。
 - **メモ**: 会話表示を改善中（1センテンス単位で単語カードのように繰り返し学習できる方向）。
+- **更新（2026-07-01）**: 並び替えクイズを追加（確認テスト・成績管理の位置づけ）→ keyphrase-shuffle3.html。
 
 ## chunkはリズム（Rhythm Lab） <a id="chunk-rhythm"></a>
 - **作成者**: 島谷 / **作成日・最終更新**: 2026-06-17

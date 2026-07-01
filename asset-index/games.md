@@ -6,6 +6,13 @@
 
 ---
 
+## Manjiro Challenge（アドリブおしゃべり英作文） <a id="manjiro-challenge"></a>
+- **作成者**: 鈴木 / **作成日・最終更新**: 2026-07-01
+- **URL**: https://devel.enhack.app/static/playground/sound-lab/majiro-challenge.html
+- **概要**: アドリブで英作文を発話するチャレンジ（万次郎テーマ）。目標英文に対して発話を録音し、Gemini API が判定（transcript／スコア／日本語フィードバック等）。お手本・ヒントの読み上げはブラウザ内蔵TTS、キー未設定時はDEMOモードでランダム採点、無音録音はクライアント側で弾く。
+- **素材**: ファイル一式 → https://drive.google.com/drive/folders/1a1HEIXhZHWFTE_if_K8BnDJvqn0w5KoR?usp=sharing ／ 出題Excel → https://drive.google.com/drive/folders/111Y2ONcQtDK381_FJgnyblhoNZ3fbmIJ?usp=sharing
+- **コスト見積もり（Claude試算）**: 課金は判定（Gemini API）のみ。1判定 ≒ $0.0011（約0.16円／概ね0.1〜0.3円）。10問≒1.7円、50問≒8円、ライト学習（600回/月）≒月100円、しっかり学習（1,800回/月）≒月300円、100人規模（12万回/月）≒約2万円/月。削減策は thinkingBudget:0・gemini-2.5-flash-lite・録音上限・プロンプトのコンテキストキャッシュ。※単価は2026年初頭のGemini 2.5 Flash想定、実運用前に最新料金の確認が必要。
+
 ## Gamebook Library（ゲームブック） <a id="gamebook-library"></a>
 - **作成者**: 鈴木 / **作成日・最終更新**: 2026-06-23
 - **URL**: https://devel.enhack.app/static/playground/gamebook-library/
